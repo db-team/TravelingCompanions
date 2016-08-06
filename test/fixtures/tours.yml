@@ -4,10 +4,10 @@ one:
   title: MyString
   fromplace: MyString
   toplace: MyString
-  fromtime: 2016-08-06
-  totime: 2016-08-06
+  fromtime: 2016-08-06 22:39:06
+  totime: 2016-08-06 22:39:06
   maxmember: 1
-  creator: MyString
+  creator_id: 1
   estimatebudget: 9.99
   deposit: 9.99
   transport: MyString
@@ -17,10 +17,10 @@ two:
   title: MyString
   fromplace: MyString
   toplace: MyString
-  fromtime: 2016-08-06
-  totime: 2016-08-06
+  fromtime: 2016-08-06 22:39:06
+  totime: 2016-08-06 22:39:06
   maxmember: 1
-  creator: MyString
+  creator_id: 1
   estimatebudget: 9.99
   deposit: 9.99
   transport: MyString
