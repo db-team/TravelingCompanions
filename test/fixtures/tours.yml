@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  fromplace: MyString
+  toplace: MyString
+  fromtime: 2016-08-06
+  totime: 2016-08-06
+  maxmember: 1
+  creator: MyString
+  estimatebudget: 9.99
+  deposit: 9.99
+  transport: MyString
+  description: MyText
+
+two:
+  title: MyString
+  fromplace: MyString
+  toplace: MyString
+  fromtime: 2016-08-06
+  totime: 2016-08-06
+  maxmember: 1
+  creator: MyString
+  estimatebudget: 9.99
+  deposit: 9.99
+  transport: MyString
+  description: MyText
