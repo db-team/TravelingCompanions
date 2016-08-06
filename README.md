@@ -22,6 +22,7 @@
 * [ ] User can click on a tour to see details about the tour
 * [ ] User can't register tour that occur in the past
 
+
 #### Blogs
 * [ ] User can create, edit, delete a blogs (onwer)
 * [ ] User can comment on a blog
@@ -32,11 +33,13 @@
 
 
 #### Communication
-
-
+* [ ] Team members will be notified by email if there are new comments / updates for the tour he is involved in
+* [ ] Approved members will be reminded by email when the departure time is close
+* [ ] Member
 
 #### Administrator
-
+* [ ] The admin can browse the reported tours / members. The reported list will be sorted by number of reports.
+* [ ] The admin can block / unblock the fake tour or the members with bad attitudes
 
 ## Video Walkthrough 
 

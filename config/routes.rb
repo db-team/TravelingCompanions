@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   
   resources :sessions, only: [:new, :create]
   match 'logout' => 'sessions#destroy', as: 'logout', via: [:get, :post]
+  resources :tours
 end
