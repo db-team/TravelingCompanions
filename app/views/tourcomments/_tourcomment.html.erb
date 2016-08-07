@@ -1,0 +1,18 @@
+<div> 
+	<ul class="list-group list-group-flush">
+		<% if tourcomment.valid? %>
+		<li class="list-group-item"><span> <strong>
+			<%= tourcomment.commenter.username %> </strong> says: </span>
+			<span > <%= tourcomment.content %></span>
+			<span >
+				
+				<em><small> - Posted <%= time_ago_in_words(tourcomment.created_at) unless tourcomment.created_at.blank? %> ago.<%= link_to 'Destroy Comment', [tourcomment.tour, tourcomment], method: :delete ,
+					data: { confirm: 'Are you sure?' } unless tourcomment.blank? %>
+				</small> </em>
+			</span></li>
+			<p>
+
+			</p>
+			<% end %>
+		</ul>
+	</div>	

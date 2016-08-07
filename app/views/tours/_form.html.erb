@@ -1,0 +1,67 @@
+<%= form_for(@tour) do |f| %>
+<% if @tour.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@tour.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+  <ul>
+    <% @tour.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="container">
+  <div>
+
+    <div class="field">
+      <%= f.label :title %><br>
+      <%= f.text_field :title, placeholder: "Nhap vao tieu de chuyen di" %>
+    </div>
+    <div class="field">
+      <%= f.label :description %><br>
+      <%= f.text_area :description, placeholder: "Nhap vao Mo ta chuyen di" %>
+    </div>
+    <div class="field">
+      <%= f.label :fromplace %><br>
+      <%= f.text_field :fromplace %>
+    </div>
+
+    <div class="field"><%= f.label :toplace %><br>
+      <%= f.text_field :toplace %></div>
+
+      <div class="field">
+        <%= f.label :fromtime %><br>
+        <%= f.date_field :fromtime %>
+      </div>
+
+      <div class="field">
+        <%= f.label :totime %><br>
+        <%= f.date_field :totime, :value => DateTime.now, :min => DateTime.now %>
+      </div>
+
+      <div class="field">
+        <%= f.label :maxmember %><br>
+        <%= f.number_field :maxmember, :min => 2 %>
+      </div>
+
+      <div class="field">
+        <%= f.label :estimatebudget %><br>
+        <%= f.number_field :estimatebudget, :min => 100000, :step => 50000 %>
+        </div>      
+      <div class="field">
+        <%= f.label :deposit %><br>
+        <%= f.number_field :deposit, :min => 0, :step => 50000%>
+      </div>
+
+      <div class="field">
+        <%= f.label :transport %><br>
+        <%= f.select :transport, options_for_select(Tour.transport_list) %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit 'Tao chuyen', class: 'btn btn-secondary' %>
+      </div>
+    </div>
+  </div>
+  <% end %>

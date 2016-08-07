@@ -1,0 +1,22 @@
+<div class="card">
+  <img class="card-img-top" src="..." alt="Card image cap">
+  <div class="card-block">
+    <h4 class="card-title"><%= tour.title %></h4>
+    <p class="card-text">
+<%= tour.description %></p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Thoi gian: <span class="tag tag-info"><%= toVNTimezone(tour.fromtime) %></span> - <span class="tag tag-info"><%= toVNTimezone(tour.totime) %> </span> </li>
+    <li class="list-group-item">Lo trinh: <%= tour.travel_route %> </li>
+    <li class="list-group-item">So thanh vien: <%= tour.maxmember %></li>
+    <li class="list-group-item">Chi phi du kien: <span class="tag tag-info"> <%= toVND(tour.estimatebudget) %> </span></li>
+    <li class="list-group-item">So thanh vien dang ky: <span class="tag tag-info"> <%= tour.members.count %> </span></li>
+  </ul>
+  <div class="card-footer text-muted">
+    <%= time_ago_in_words tour.created_at %> ago
+  </div>
+  <%= link_to "Tham Gia", nil , class: 'btn btn-primary' %>
+<%= render tour.tourcomments %>
+<%= render 'tourcomments/form', tour: tour %>
+
+</div>
