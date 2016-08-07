@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :tours
+  resources :tours do
+  	resources :tourcomments
+  end
+  
   resources :blogs
   resources :users
   root "welcome#index"

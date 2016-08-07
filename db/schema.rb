@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160806150002) do
+ActiveRecord::Schema.define(version: 20160807071006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,17 @@ ActiveRecord::Schema.define(version: 20160806150002) do
     t.index ["reporter_id"], name: "index_report_users_on_reporter_id", using: :btree
   end
 
+  create_table "tourcomments", force: :cascade do |t|
+    t.integer  "tour_id"
+    t.integer  "commenter_id"
+    t.text     "content"
+    t.string   "status"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["commenter_id"], name: "index_tourcomments_on_commenter_id", using: :btree
+    t.index ["tour_id"], name: "index_tourcomments_on_tour_id", using: :btree
+  end
+
   create_table "tourmembers", force: :cascade do |t|
     t.integer  "tour_id"
     t.integer  "member_id"
@@ -84,10 +95,10 @@ ActiveRecord::Schema.define(version: 20160806150002) do
     t.string   "title"
     t.string   "fromplace"
     t.string   "toplace"
-    t.date     "fromtime"
-    t.date     "totime"
+    t.datetime "fromtime"
+    t.datetime "totime"
     t.integer  "maxmember"
-    t.string   "creator"
+    t.integer  "creator_id"
     t.decimal  "estimatebudget"
     t.decimal  "deposit"
     t.string   "transport"

@@ -8,10 +8,10 @@
 * [ ] After sign up, user is taken to page update info with day-of-birth, gender, avatar, address
 * [ ] User can change password
 * [ ] User will be reviced an email after create account, change password
-* [ ] User can create a new tour with role is Leader
+* [X] User can create a new tour with role is Leader
 * [ ] User can register a tour, status is pending
 * [ ] Leader can approve who will travel in his tour
-* [ ] User can discuss in anytour (comment)
+* [X] User can discuss in anytour (comment)
 * [ ] User can report a fake tour
 * [ ] Leader can edit his tour after create
 
@@ -21,6 +21,7 @@
 * [ ] User can filter tours with transport, max_member, total_day_travel, max_budget...
 * [ ] User can click on a tour to see details about the tour
 * [ ] User can't register tour that occur in the past
+* [ ] User can upvote / downvote a tour 
 
 
 #### Blogs
