@@ -10,22 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160806091807) do
+ActiveRecord::Schema.define(version: 20160810184132) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "tours", force: :cascade do |t|
+    t.string   "title"
+    t.string   "fromplace"
+    t.string   "toplace"
+    t.date     "fromtime"
+    t.date     "totime"
+    t.integer  "maxmember"
+    t.string   "creator"
+    t.decimal  "estimatebudget"
+    t.decimal  "deposit"
+    t.string   "transport"
+    t.text     "description"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
   create_table "users", force: :cascade do |t|
+    t.string   "name"
     t.string   "username"
     t.string   "email"
     t.string   "password_digest"
-    t.date     "dob"
-    t.boolean  "gender"
-    t.string   "avatar_url"
-    t.string   "address"
-    t.boolean  "is_active"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "remember_digest"
+    t.boolean  "admin",             default: false
+    t.string   "activation_digest"
+    t.boolean  "activated",         default: false
+    t.datetime "activated_at"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.index ["email"], name: "index_users_on_email", using: :btree
+    t.index ["username"], name: "index_users_on_username", using: :btree
   end
 
 end
