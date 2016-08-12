@@ -7,4 +7,13 @@ class User < ApplicationRecord
   has_many :reported, class_name: "Reportuser", foreign_key: "reportee_id"
 
   has_secure_password
+
+  def get_avatar
+  	if avatar_url 
+  		avatar_url
+  	else
+  		# Unknown avatar
+  		'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBSGEU8ALTcThDrHBnbKimaGg_iYTz-M2uQedFhGXgHpMrRiP47e8GWm0'
+  	end
+  end
 end

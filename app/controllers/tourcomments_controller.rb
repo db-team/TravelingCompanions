@@ -11,13 +11,18 @@ class TourcommentsController < ApplicationController
 		@cmt = @tour.tourcomments.create(tourcomment_params)
 
 		if @cmt.save      
+			UserMailer.notify_user(@tour).deliver_now
 			redirect_to tour_path(@tour)
 		else
 			render 'tours/show'
 		end
 	end
 
-	def destroy
+	def destroy		
+		@tour = Tour.find(params[:tour_id])
+		@tourcomment = @tour.tourcomments.find(params[:id])
+		@tourcomment.destroy
+		redirect_to tour_path(@tour)
 	end
 
 	private 

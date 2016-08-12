@@ -2,17 +2,15 @@
 	<ul class="list-group list-group-flush">
 		<% if tourcomment.valid? %>
 		<li class="list-group-item"><span> <strong>
-			<%= tourcomment.commenter.username %> </strong> says: </span>
+			<%= image_tag(tourcomment.commenter.get_avatar , size: "30x30") %> </strong> </span>
 			<span > <%= tourcomment.content %></span>
-			<span >
+			<span class="pull-xs-right">
+			<span class="glyphicons glyphicons-remove"></span>
 				
-				<em><small> - Posted <%= time_ago_in_words(tourcomment.created_at) unless tourcomment.created_at.blank? %> ago.<%= link_to 'Destroy Comment', [tourcomment.tour, tourcomment], method: :delete ,
+				<em><small> Posted <%= time_ago_in_words(tourcomment.created_at) unless tourcomment.created_at.blank? %> ago  <%= link_to 'X', [tourcomment.tour, tourcomment], method: :delete ,
 					data: { confirm: 'Are you sure?' } unless tourcomment.blank? %>
 				</small> </em>
-			</span></li>
-			<p>
-
-			</p>
+			</span></li>	
 			<% end %>
 		</ul>
 	</div>	

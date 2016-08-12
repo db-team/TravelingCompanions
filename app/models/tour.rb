@@ -3,7 +3,10 @@ class Tour < ApplicationRecord
 	has_many :tourmembers
 	has_many :members, through: :tourmembers, :dependent =>  :destroy
 
-	has_many :tourcomments
+	has_many :tourimages
+	has_many :tourcomments  
+	acts_as_taggable 
+	
 	
 	scope :active, -> {where('fromtime > ? ', DateTime.now)}
 	scope :inactive, -> {where('fromtime <= ? ', DateTime.now)}
@@ -27,6 +30,13 @@ class Tour < ApplicationRecord
 		fromplace + " - " + toplace
 	end
 
+	def pick_image
+		if tourimages.first.img_url 
+			tourimages.first.img_url 
+		else
+			'http://vignette4.wikia.nocookie.net/aliceinwonderland/images/9/95/Wo.jpg/revision/latest?cb=20160106000058'
+		end
+	end
 	# def approve_member
 	# 	tourmembers.where(status: 'approved')
 	# end

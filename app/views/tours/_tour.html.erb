@@ -1,9 +1,16 @@
+</br>
+</br>
+</br>
 <div class="card">
-  <img class="card-img-top" src="..." alt="Card image cap">
+  <img class="card-img-top" src="<%= tour.pick_image %>" alt="Card image cap">
   <div class="card-block">
     <h4 class="card-title"><%= tour.title %></h4>
     <p class="card-text">
 <%= tour.description %></p>
+<p class="card-text"><% tag_cloud Tour.tag_counts, %w[s m l] do |tag, css_class| %>
+          <%= link_to tag.name, nil, class: "tag tag-pill tag-primary" %> 
+          </a>  
+          <% end %></p>
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item">Thoi gian: <span class="tag tag-info"><%= toVNTimezone(tour.fromtime) %></span> - <span class="tag tag-info"><%= toVNTimezone(tour.totime) %> </span> </li>
