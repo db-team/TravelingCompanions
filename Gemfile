@@ -14,9 +14,12 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
+gem 'rails-assets-tether'
 gem 'carrierwave'
 gem 'mini_magick', '~> 4.5', '>= 4.5.1'
 gem 'faker'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 group :development, :test do
   gem 'byebug', platform: :mri

@@ -1,4 +1,4 @@
-User.create!( name: "Administrator"
+User.create!( name: "Administrator",
 			  			username: "admin",
               email: "admin@travelgo.com",
               password: "foobar",
@@ -9,9 +9,10 @@ User.create!( name: "Administrator"
               
 99.times do |n|
 	name = Faker::Name.name
-  username  = Faker::Internet.user_name
+  username  = Faker::Name.first_name+"#{n+1}"
   email = Faker::Internet.safe_email(username)
-  User.create!(username:  username,
+  User.create!(name: name,
+               username:  username,
                email: email,
                password:              "password",
                password_confirmation: "password",
