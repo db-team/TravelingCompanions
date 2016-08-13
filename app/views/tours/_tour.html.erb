@@ -6,24 +6,41 @@
   <div class="card-block">
     <h4 class="card-title"><%= tour.title %></h4>
     <p class="card-text">
-<%= tour.description %></p>
-<p class="card-text"><% tag_cloud Tour.tag_counts, %w[s m l] do |tag, css_class| %>
-          <%= link_to tag.name, nil, class: "tag tag-pill tag-primary" %> 
-          </a>  
-          <% end %></p>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Thoi gian: <span class="tag tag-info"><%= toVNTimezone(tour.fromtime) %></span> - <span class="tag tag-info"><%= toVNTimezone(tour.totime) %> </span> </li>
-    <li class="list-group-item">Lo trinh: <%= tour.travel_route %> </li>
-    <li class="list-group-item">So thanh vien: <%= tour.maxmember %></li>
-    <li class="list-group-item">Chi phi du kien: <span class="tag tag-info"> <%= toVND(tour.estimatebudget) %> </span></li>
-    <li class="list-group-item">So thanh vien dang ky: <span class="tag tag-info"> <%= tour.members.count %> </span></li>
-  </ul>
-  <div class="card-footer text-muted">
-    <%= time_ago_in_words tour.created_at %> ago
-  </div>
-  <%= link_to "Tham Gia", nil , class: 'btn btn-primary' %>
-<%= render tour.tourcomments %>
-<%= render 'tourcomments/form', tour: tour %>
+      <%= tour.description %></p>
+      <p class="card-text"><% tag_cloud Tour.tag_counts, %w[s m l] do |tag, css_class| %>
+        <%= link_to tag.name, nil, class: "tag tag-pill tag-primary" %> 
+      </a>  
+      <% end %></p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Thoi gian: <span class="tag tag-info"><%= toVNTimezone(tour.fromtime) %></span> - <span class="tag tag-info"><%= toVNTimezone(tour.totime) %> </span> </li>
+      <li class="list-group-item">Lo trinh: <%= tour.travel_route %> </li>
+      <li class="list-group-item">So thanh vien: <%= tour.maxmember %></li>
+      <li class="list-group-item">Chi phi du kien: <span class="tag tag-info"> <%= toVND(tour.estimatebudget) %> </span></li>
+      <li class="list-group-item">So thanh vien dang ky: <span class="tag tag-info"> <%= tour.members.count %> </span></li>
+    </ul>
+    <div class="card-footer text-muted">
+      <%= time_ago_in_words tour.created_at %> ago
+    </div>
+    <div class="row">
+      <div class="col-sm-8"><%= link_to "Tham Gia", nil , class: 'btn btn-primary' %></div>
+      <div class="col-sm-4">
+        Danh gia
 
-</div>
+        <%= link_to ratetour_path(:point => 1, :id => tour.id),  method: :post , :remote => true, class: "btn btn-default", id: "rateup"  do %>        
+        <i class="fa fa-thumbs-o-up"> <%= tour.total_rate_up %></i>
+        <% end %>
+
+        <%= link_to ratetour_path(:point => -1, :id => tour.id),  method: :post , :remote => true, class: "btn btn-default", id: "ratedown"  do %>        
+        <i class="fa fa-thumbs-o-down"> <%= tour.total_rate_down %></i>
+        <% end %>
+      </div>
+    </div>    
+    <div> 
+      <ul class="list-group list-group-flush" id="tourcomments">
+        <%= render tour.tourcomments %>
+      </ul>
+    </div>
+    <%= render 'tourcomments/form', tour: tour %>
+
+  </div>

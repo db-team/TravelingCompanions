@@ -26,6 +26,25 @@ class ToursController < ApplicationController
 
 	end
 
+	def update
+
+	end
+
+	def rate
+		curr_user = current_user
+		@tour = Tour.find(params[:id])
+		if params[:point].to_i > 0 
+			@tour.rated_up_by(curr_user)
+		elsif params[:point].to_i < 0
+			@tour.rated_down_by(curr_user)
+		end
+
+		respond_to do |format|
+			# format.html 
+			format.js
+		end
+	end
+
 	private
 	def tourparams
 		params.require(:tour).permit(:id, :name, :fromplace, :toplace, :fromtime, :totime, :maxmember, :creator_id, :estimatebudget, :deposit, :transport, :description, :tag_list)

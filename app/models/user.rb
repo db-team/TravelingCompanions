@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :ratings, class_name: "Creditrating", foreign_key: "ratee_id"
   has_many :reportothers, class_name: "Reportuser", foreign_key: "reporter_id"
   has_many :reported, class_name: "Reportuser", foreign_key: "reportee_id"
+  has_many :tourratings
 
   has_secure_password
 

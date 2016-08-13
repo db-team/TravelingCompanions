@@ -3,10 +3,12 @@ class Tour < ApplicationRecord
 	has_many :tourmembers
 	has_many :members, through: :tourmembers, :dependent =>  :destroy
 
-	has_many :tourimages
+	has_many :tourimages, :dependent => :destroy
 	has_many :tourcomments  
+
+	has_many :tourratings
+
 	acts_as_taggable 
-	
 	
 	scope :active, -> {where('fromtime > ? ', DateTime.now)}
 	scope :inactive, -> {where('fromtime <= ? ', DateTime.now)}
@@ -36,6 +38,26 @@ class Tour < ApplicationRecord
 		else
 			'http://vignette4.wikia.nocookie.net/aliceinwonderland/images/9/95/Wo.jpg/revision/latest?cb=20160106000058'
 		end
+	end
+
+	def rated_up_by(user)
+		if user.id != creator.id
+			tourratings << Tourrating.create!(:tour => self, :user => user, :point => 1)
+		end
+	end
+
+	def rated_down_by(user)
+		if user.id != creator.id
+			tourratings << Tourrating.create!(:tour => self, :user => user, :point => -1)
+		end
+	end
+
+	def total_rate_up
+		tourratings.where('point > 0').count
+	end
+
+	def total_rate_down
+		tourratings.where('point < 0').count
 	end
 	# def approve_member
 	# 	tourmembers.where(status: 'approved')

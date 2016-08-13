@@ -1,16 +1,19 @@
-<div> 
-	<ul class="list-group list-group-flush">
-		<% if tourcomment.valid? %>
-		<li class="list-group-item"><span> <strong>
-			<%= image_tag(tourcomment.commenter.get_avatar , size: "30x30") %> </strong> </span>
+
+<% if tourcomment.valid? %>
+<li class="list-group-item" data-tourcomment-id="<%= tourcomment.id %>">
+	<div class="row">
+		<div class="col-xs-1" data-toggle="tooltip" data-placement="bottom" title="<%= tourcomment.commenter.username %>">
+		<%= image_tag(tourcomment.commenter.get_avatar , size: "40x40") %> 
+		</div>
+		<div class="col-xs-11">
 			<span > <%= tourcomment.content %></span>
 			<span class="pull-xs-right">
-			<span class="glyphicons glyphicons-remove"></span>
-				
-				<em><small> Posted <%= time_ago_in_words(tourcomment.created_at) unless tourcomment.created_at.blank? %> ago  <%= link_to 'X', [tourcomment.tour, tourcomment], method: :delete ,
-					data: { confirm: 'Are you sure?' } unless tourcomment.blank? %>
+				<span class="glyphicons glyphicons-remove"></span>
+
+				<em><small> Posted <%= time_ago_in_words(tourcomment.created_at) unless tourcomment.created_at.blank? %> ago  <%= link_to "x", [tourcomment.tour, tourcomment], class: "close", method: :delete , :remote => true unless tourcomment.blank? %>
 				</small> </em>
-			</span></li>	
-			<% end %>
-		</ul>
-	</div>	
+			</span>
+		</div>
+	</div>
+</li>	
+<% end %>

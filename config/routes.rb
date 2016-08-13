@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   	resources :tourcomments
   end
   
+  match 'ratetour' => 'tours#rate', as: 'ratetour', via: [:post]
+
   resources :blogs
   resources :users
   root "welcome#index"

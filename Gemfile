@@ -29,6 +29,10 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
 
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tether', '>= 1.1.0'
+end
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -51,3 +55,4 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'acts-as-taggable-on', '~> 4.0'
 gem 'faker', '~> 1.6', '>= 1.6.6'
+gem "font-awesome-rails"
