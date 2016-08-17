@@ -19,3 +19,11 @@ User.create!( name: "Administrator",
                activated: true,
                activated_at: Time.zone.now)
 end
+
+# Following relationships
+users = User.all
+user = User.first
+following = users[2..50]
+followers = users[3..40]
+following.each { |followed| user.follow(followed) }
+followers.each { |follower| follower.follow(user) }

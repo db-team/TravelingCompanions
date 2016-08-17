@@ -10,13 +10,13 @@
   <body>
   	<%= render 'layouts/header' %>
 
-		<div class="container">
+		<div class="content">
 			<% flash.each do |message_type, message| %>
       	<div class="alert alert-<%= message_type %>"><%= message.html_safe %></div>
       <% end %>
       <%= yield %>
-      <%= render 'layouts/footer' %>
-      <%= debug(params) if Rails.env.development? %>
+      
 		</div>
+    <%= filepicker_js_include_tag %>
   </body>
 </html>

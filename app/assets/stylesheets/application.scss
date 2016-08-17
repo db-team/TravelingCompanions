@@ -1,2 +1,36 @@
 @import "bootstrap";
-@import "custom";
+@import "font-awesome";
+// @import "custom";
+@import  "bootsy";
+@import "blogs";
+
+
+html {
+    font-family: sans-serif;
+}
+body {
+    margin: 0;
+}
+
+nav {
+  background-color: #3097d1;
+  border: 1px solid #1c73a5;
+  .btn {
+    margin-top: 3px;
+    -moz-appearance: none;
+    -moz-user-select: none;
+    border-radius: 3px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 6px 12px;
+    position: relative;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+}
+
+.content {
+    margin-top: 70px;
+}

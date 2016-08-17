@@ -6,7 +6,7 @@ gem 'rails', '~> 5.0.0'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 gem 'sass-rails'
-gem 'bootstrap-sass'
+# gem 'bootstrap-sass'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
@@ -20,6 +20,10 @@ gem 'mini_magick', '~> 4.5', '>= 4.5.1'
 gem 'faker'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
+gem 'ckeditor'
+gem 'filepicker-rails' #upload avatar
+gem 'bootsy', github: 'llja0112/bootsy', branch: 'bootstrap_4_UI'
+gem 'acts-as-taggable-on'
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -35,3 +39,4 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem "font-awesome-rails"

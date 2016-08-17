@@ -1,9 +1,12 @@
-@import "bootstrap-sprockets";
 @import "bootstrap";
+@import "bootstrap/variables";
+
+$gray-darker: #ccc;
 
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
+$photoGray: #B4B4B4;
 
 /* universal */
 
