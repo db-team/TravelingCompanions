@@ -3,8 +3,14 @@
 <br/>
 <br/>
 <%= link_to "Tao chuyen di moi", new_tour_path, class: "btn btn-primary" %>
-<div class="">Danh sach chuyen di</div>
 <br/>
-
-<div class="container"><%= render @tours %></div>
-
+<% @tours.each do |tour| %>
+<div class="row">
+	<div class="col-md-10">
+		<%= link_to  "#{tour.title}", tour_path(tour.id) %>
+	</div>
+	<div class="col-md-2" >
+		Nguoi tao <span class="tag tag-info">	<%= tour.creator.username %></span>
+	</div>
+</div>
+<% end %>

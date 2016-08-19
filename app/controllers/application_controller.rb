@@ -23,7 +23,7 @@ def current_user
   if session[:user_id]
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   else
-    User.find(1)
+    User.find(5)
   end
 end
 

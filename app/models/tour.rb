@@ -1,27 +1,71 @@
 class Tour < ApplicationRecord
 	belongs_to :creator, class_name: "User"
-	has_many :tourmembers
+	has_many :tourmembers, :dependent =>  :destroy
+	has_many :pending_members, -> { where(:status => 'pending').includes(:member)}, class_name: "Tourmember"
+	has_many :approved_members, -> { where(:status => 'approved')}, class_name: :Tourmember
+	has_many :cancelled_members, -> { where(:status => 'cancelled')}, class_name: :Tourmember
 	has_many :members, through: :tourmembers, :dependent =>  :destroy
 
 	has_many :tourimages, :dependent => :destroy
-	has_many :tourcomments  
+	has_many :tourcomments, :dependent =>  :destroy
 
-	has_many :tourratings
+	has_many :tourratings, :dependent =>  :destroy
 
 	acts_as_taggable 
 	
 	scope :active, -> {where('fromtime > ? ', DateTime.now)}
 	scope :inactive, -> {where('fromtime <= ? ', DateTime.now)}
-
 	scope :red, -> { where(color: 'red') }
+	scope :of_user, -> (user) { where(creator: user)}
 
 	def self.transport_list
 		["Xe may", "Tau lua", "May bay", "Xe khach"]
 	end
 
-	def pending_members
-		members.merge(Tourmember.pending_members)
-	end
+	def sorted_members
+		h = {1=>"pending", 2=>"approved", 3=>"rejected", 4=>"cancelled"}
+		tourmembers.sort_by do |m| h.key(m.status) end
+		end
+		def find_member(user)
+			tourmembers.find_by(member_id: user.id)
+		end
+
+		def join_request(user)
+			m = find_member(user)
+			unless m
+				Tourmember.create!(:tour => self, :member => user, :role => 'member', :status => 'pending')
+			else
+				m.pending		
+			end
+		end
+
+		def pick_member(user)
+			tourmembers.where(:user => user).approved
+		end
+
+		def reject(user)
+			tourmembers.where(:user => user).first.reject
+		end
+
+		def cancel_request(user)
+			tourmembers.where(:member_id => user.id).first.cancel
+		end
+
+		def all_member_names
+			tourmembers.map{|m| m.member.username}.to_sentence
+		end
+
+		def pending_member_names
+			pending_members.map{|m| m.member.username}.to_sentence
+		end
+
+		def has_pending_request(user)
+			pending_members.find_by(member_id: user.id)
+		end
+
+	# def pending_members
+	# 	members.merge(Tourmember.pending_members)
+	# end
 
 	def travel_time
 		fromtime.to_s + " - " + totime.to_s
@@ -33,7 +77,7 @@ class Tour < ApplicationRecord
 	end
 
 	def pick_image
-		if tourimages.first.img_url 
+		if tourimages.first 
 			tourimages.first.img_url 
 		else
 			'http://vignette4.wikia.nocookie.net/aliceinwonderland/images/9/95/Wo.jpg/revision/latest?cb=20160106000058'

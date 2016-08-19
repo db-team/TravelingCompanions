@@ -56,3 +56,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'acts-as-taggable-on', '~> 4.0'
 gem 'faker', '~> 1.6', '>= 1.6.6'
 gem "font-awesome-rails"
+gem 'jquery-ui-rails'
+gem 'gmaps-autocomplete-rails'
+# gem 'bootsy', :git => "git@github.com:/llja0112/bootsy.git"
+gem 'sir_trevor_rails'

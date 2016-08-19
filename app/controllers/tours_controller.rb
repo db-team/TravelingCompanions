@@ -10,20 +10,65 @@ class ToursController < ApplicationController
 	def show
 		@tour = Tour.find(params[:id])
 	end
+
+	def edit 
+		@tour = Tour.find(params[:id])
+	end
 	
 	def create
+		@tour = Tour.new tourparams
+		@tour.creator = current_user
+
+		if @tour.save
+			redirect_to tours_path
+		else
+			render 'new'
+		end
 	end
 
 	def destroy
 	end
 
-	def my_tours
-		curr_user = current_user
-		@mytours = curr_user.tours
+	def pick_member
+		# @tour = Tour.where(id: params[:tour_id]).includes(:pending_members)
+		# 	.includes(:approved_members)
+		# 	.includes(:cancelled_members)
+
+		@tour = Tour.find(params[:tour_id])
 	end
 
-	def request_join
+	def my_tours
+		curr_user = current_user
+		@tours = Tour.of_user(curr_user)
+	end
 
+
+	def join_request		
+		curr_user = current_user
+		@tour = Tour.find(params[:id])
+
+		if not @tour.has_pending_request(curr_user)
+			@tour.join_request(curr_user)
+		end
+
+		respond_to do |format|
+			# format.html 
+			format.js { render :file => '/tours/_change_request.js.erb' }
+		end
+	end
+
+	def cancel_request
+		curr_user = current_user
+		@tour = Tour.find(params[:id])
+
+		if @tour.has_pending_request(curr_user)
+			@tour.cancel_request(curr_user)
+		end
+
+		respond_to do |format|
+			# format.html 
+			format.js { render :file => '/tours/_change_request.js.erb' }
+		end
 	end
 
 	def update
@@ -45,9 +90,12 @@ class ToursController < ApplicationController
 		end
 	end
 
-	private
-	def tourparams
-		params.require(:tour).permit(:id, :name, :fromplace, :toplace, :fromtime, :totime, :maxmember, :creator_id, :estimatebudget, :deposit, :transport, :description, :tag_list)
+	private 
+	def tourparams 
+		params.require(:tour).permit(:id, :title, :name,
+			:fromplace, :toplace, :fromtime, :totime, :maxmember, :creator_id,
+			:estimatebudget, :deposit, :transport, :description, :tag_list,
+			:bootsy_image_gallery_id) 
 	end
 
 end

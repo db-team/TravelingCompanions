@@ -1,0 +1,8 @@
+<% members.each do |member| %>
+<div class="row">
+<div class="col-md-10"><%= member.member.username %></div>
+ <div class="col-md-2"> 
+	<%= span_tag(member.status) %> 
+</div>
+</div>
+<% end %>

@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :reportothers, class_name: "Reportuser", foreign_key: "reporter_id"
   has_many :reported, class_name: "Reportuser", foreign_key: "reportee_id"
   has_many :tourratings
+  has_many :tours, class_name: 'Tour', :foreign_key => "creator"
 
   has_secure_password
 
@@ -16,5 +17,9 @@ class User < ApplicationRecord
   		# Unknown avatar
   		'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBSGEU8ALTcThDrHBnbKimaGg_iYTz-M2uQedFhGXgHpMrRiP47e8GWm0'
   	end
+  end
+
+  def my_tour
+
   end
 end
