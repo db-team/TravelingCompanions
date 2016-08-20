@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
-  resources :blogs
-  get 'password_resets/new'
+  resources :blogs do
+    member do 
+      post :publish, :unpublish
+    end 
+  end
 
+  get 'password_resets/new'
   get 'password_resets/edit'
 
   root "welcome#index"

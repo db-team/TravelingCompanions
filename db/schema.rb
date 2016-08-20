@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160816174556) do
+ActiveRecord::Schema.define(version: 20160820022015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,8 +19,11 @@ ActiveRecord::Schema.define(version: 20160816174556) do
     t.string   "title"
     t.text     "extended_html_content"
     t.integer  "author_id"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.boolean  "published",             default: false
+    t.string   "photo_url"
+    t.datetime "published_at"
   end
 
   create_table "bootsy_image_galleries", force: :cascade do |t|
