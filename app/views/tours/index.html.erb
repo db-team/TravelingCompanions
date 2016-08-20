@@ -1,10 +1,8 @@
-
-<br/>
-<br/>
-<br/>
-<div class="row">
+<div class="container">
+<div class="row", id="new_tour" >
 <%= link_to "Tao chuyen di moi", new_tour_path, class: "btn btn-primary" %></div>
 <br/>
 <% @tours.each do |tour| %>
 <%= render 'tour_in_card', tour: tour %>
 <% end %>
+</div>

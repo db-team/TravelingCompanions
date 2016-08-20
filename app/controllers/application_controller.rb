@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :is_my_tour?
   before_action :set_locale
+  include SessionsHelper
+
   
   def set_locale
     I18n.locale = extract_locale_from_tld || I18n.default_locale
@@ -23,12 +25,23 @@ def current_user
   return @current_user if @current_user
   if session[:user_id]
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
-  else
-    User.find(29)
   end
 end
 
-def is_my_tour?(tour)
-  tour.created_by?(current_user.id)
+def is_my_tour?(tour)  
+  if current_user 
+    tour.created_by?(current_user.id) 
+  end
 end
+
+  private
+
+    # Confirms a logged-in user.
+    def logged_in_user
+      unless logged_in?
+        store_location
+        flash[:danger] = "Please log in."
+        redirect_to login_url
+      end
+    end
 end

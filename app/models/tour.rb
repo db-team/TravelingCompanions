@@ -72,8 +72,8 @@ class Tour < ApplicationRecord
 		pending_members.map{|m| m.member.username}.to_sentence
 	end
 
-	def has_pending_request(user)
-		pending_members.find_by(member_id: user.id)
+	def has_pending_request(user)		
+		return pending_members.find_by(:id => user.id) if user
 	end
 
 	# def pending_members

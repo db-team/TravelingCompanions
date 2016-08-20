@@ -15,7 +15,7 @@
       <div id="tour_description2">
         <div id="tour_title">
           <div class="row">
-            <h4 class="card-title"><%= tour.title %></h4> <% if tour.created_by?(current_user.id) %>
+            <h4 class="card-title"><%= tour.title %></h4> <% if is_my_tour?(tour) %>
             <%= link_to edit_tour_path(id: tour.id), method: :get do %> 
             <i class="fa fa-pencil" aria-hidden="true"></i>
             <% end %>
