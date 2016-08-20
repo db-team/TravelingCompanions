@@ -1,21 +1,23 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  name: MyString
   username: MyString
   email: MyString
   password_digest: MyString
-  dob: 2016-08-06
-  gender: false
-  avatar_url: MyString
-  address: MyString
-  is_active: false
+  remember_digest: MyString
+  admin: false
+  activation_digest: MyString
+  activated: false
+  activate_at: 2016-08-10 18:41:32
 
 two:
+  name: MyString
   username: MyString
   email: MyString
   password_digest: MyString
-  dob: 2016-08-06
-  gender: false
-  avatar_url: MyString
-  address: MyString
-  is_active: false
+  remember_digest: MyString
+  admin: false
+  activation_digest: MyString
+  activated: false
+  activate_at: 2016-08-10 18:41:32

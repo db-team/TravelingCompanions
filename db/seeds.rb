@@ -13,10 +13,31 @@ User.delete_all
 Tour.delete_all
 
 %w{ albert bella carlos david edgar henry isco john }.each_with_index do |name, index|
-	User.create!(:id => index, :username => name, :email => "#{name}@example", :password => name, :avatar_url => Faker::Avatar.image)
+	User.create!(:id => index, :username => name, :name => name, :email => Faker::Internet.safe_email(name), :password => 'password#{name}', :avatar => Faker::Avatar.image)
+end
+              
+99.times do |n|
+  name = Faker::Name.name
+  username  = Faker::Name.first_name+"#{n+1}"
+  email = Faker::Internet.safe_email(username)
+  User.create!(name: name,
+               username:  username,
+               email: email,
+               password:              "password",
+               password_confirmation: "password",
+               activated: true,
+               activated_at: Time.zone.now)
 end
 
-User.create!(:id => 29, :username => "An Vo", :email => "akira.an111@gmail.com", :password => "anvo", :avatar_url => Faker::Avatar.image)
+# Following relationships
+users = User.all
+user = User.first
+# following = users[2..50]
+# followers = users[3..40]
+# following.each { |followed| user.follow(followed) }
+# followers.each { |follower| follower.follow(user) }
+
+User.create!(:id => 29, :username => "AnVo", :name => "anvo", :email => "akira.an111@gmail.com", :password => "passwordanvo", :avatar => Faker::Avatar.image)
 
 t = Tour.create!(:title => "Du lich Phan Rang thap cham 4 ngay 3 dem", :fromplace => "Nga 4 Phu Nhuan, tp. Ho Chi Minh", :toplace => "tp. Thap Cham, tinh Phan Rang", :fromtime => DateTime.parse('Tue, 6 Sep 2016 7:00 AM+0700'), :totime => DateTime.parse('Sat, 10 Sep 2016 7:00 AM+0700'), :maxmember => 2, :creator_id => 29, :estimatebudget => 2000000, :deposit => 500000, :transport => "Tau lua", :description => "DI du lich 2 ngay 3 dem tai Phan Rang Thap Cham. Thành phố Đà Nẵng nhận được rất nhiều mệnh danh như thành phố đáng sống, thành phố của những cây cầu, thành phố 5 không, 3 có. Không phải  tự nhiên mà thành phố Đà Nẵng nhận được nhiều mỹ từ để mô tả như vậy, đó là sự nỗ lực, cố gắng  của người dân cũng như chính quyền thành phố Đà Nẵng.  Đây cũng là cảm nhận chung của rất nhiều người khi đến, khám phá vẻ đẹp thiên nhiên, cũng như con người Đà Nẵng. 
 Không chỉ đẹp bởi vẻ đẹp đa dạng của thiên nhiên núi, sông, bãi biển, mà cả con người nơi đây cũng rất đẹp, với những nụ cười thân thiện luôn nở trên môi.
@@ -93,3 +114,12 @@ t.rated_down_by(User.find(4))
 t2 = Tour.create!(:title => "Du lich Da Nang Hoi An 7 ngay", :fromplace => "Nga 4 Phu Nhuan, tp. Ho Chi Minh", :toplace => "tp. Thap Cham, tinh Phan Rang", :fromtime => DateTime.parse('Tue, 6 Sep 2016 7:00 AM+0700'), :totime => DateTime.parse('Sat, 10 Sep 2016 7:00 AM+0700'), :maxmember => 2, :creator_id => 4, :estimatebudget => 2000000, :deposit => 500000, :transport => "Tau lua", :description => "DI du lich 2 ngay 3 dem tai Phan Rang Thap Cham")
 Tourimage.create!(:tour => t2, :img_url => 'http://dranahotel.com/upload/anh%20Thohtn/1.jpg')
 t2.tag_list.add("bien", "cau rong")
+
+# User.create!( name: "Administrator",
+# 			  			username: "admin",
+#               email: "admin@travelgo.com",
+#               password: "foobar",
+#               password_confirmation: "foobar",
+#               admin: true,
+#               activated: true,
+#               activated_at: Time.zone.now)
