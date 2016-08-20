@@ -1,0 +1,19 @@
+<%= form_for([tour, tour.tourcomments.build], :remote => true) do |f| %>
+
+<% if @cmt != nil && @cmt.errors.any? %>
+<div id="error_explanation">
+	<h2><%= pluralize(@cmt.errors.count, "error") %> </h2>
+
+	<ul>
+		<% @cmt.errors.full_messages.each do |message| %>
+		<li><%= message %></li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
+
+<%= f.hidden_field :commenter_id, :value => current_user.id %>
+<p>
+	<%= f.text_area :content, :placeholder => 'Nhap binh luan vao day' %>
+</p>
+<% end %>

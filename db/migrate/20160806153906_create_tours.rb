@@ -4,10 +4,10 @@ class CreateTours < ActiveRecord::Migration[5.0]
       t.string :title
       t.string :fromplace
       t.string :toplace
-      t.date :fromtime
-      t.date :totime
+      t.datetime :fromtime
+      t.datetime :totime
       t.integer :maxmember
-      t.string :creator
+      t.integer :creator_id
       t.decimal :estimatebudget
       t.decimal :deposit
       t.string :transport

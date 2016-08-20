@@ -10,10 +10,159 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160806091807) do
+ActiveRecord::Schema.define(version: 20160816143416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "blogs", force: :cascade do |t|
+    t.string   "title"
+    t.string   "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "bootsy_image_galleries", force: :cascade do |t|
+    t.string   "bootsy_resource_type"
+    t.integer  "bootsy_resource_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "bootsy_images", force: :cascade do |t|
+    t.string   "image_file"
+    t.integer  "image_gallery_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "blog_id"
+    t.integer  "commenter_id"
+    t.text     "content"
+    t.string   "status"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["blog_id"], name: "index_comments_on_blog_id", using: :btree
+    t.index ["commenter_id", "blog_id"], name: "index_comments_on_commenter_id_and_blog_id", unique: true, using: :btree
+    t.index ["commenter_id"], name: "index_comments_on_commenter_id", using: :btree
+  end
+
+  create_table "creditratings", force: :cascade do |t|
+    t.integer  "rater_id"
+    t.integer  "ratee_id"
+    t.integer  "leadership"
+    t.integer  "teamwork"
+    t.integer  "blogger"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ratee_id"], name: "index_creditratings_on_ratee_id", using: :btree
+    t.index ["rater_id", "ratee_id"], name: "index_creditratings_on_rater_id_and_ratee_id", unique: true, using: :btree
+    t.index ["rater_id"], name: "index_creditratings_on_rater_id", using: :btree
+  end
+
+  create_table "followings", force: :cascade do |t|
+    t.integer  "follower_id"
+    t.integer  "followee_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["followee_id"], name: "index_followings_on_followee_id", using: :btree
+    t.index ["follower_id", "followee_id"], name: "index_followings_on_follower_id_and_followee_id", unique: true, using: :btree
+    t.index ["follower_id"], name: "index_followings_on_follower_id", using: :btree
+  end
+
+  create_table "report_users", force: :cascade do |t|
+    t.integer  "reporter_id"
+    t.integer  "reportee_id"
+    t.text     "reason"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["reportee_id"], name: "index_report_users_on_reportee_id", using: :btree
+    t.index ["reporter_id", "reportee_id"], name: "index_report_users_on_reporter_id_and_reportee_id", unique: true, using: :btree
+    t.index ["reporter_id"], name: "index_report_users_on_reporter_id", using: :btree
+  end
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer  "tag_id"
+    t.string   "taggable_type"
+    t.integer  "taggable_id"
+    t.string   "tagger_type"
+    t.integer  "tagger_id"
+    t.string   "context",       limit: 128
+    t.datetime "created_at"
+    t.index ["context"], name: "index_taggings_on_context", using: :btree
+    t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
+    t.index ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
+    t.index ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
+    t.index ["taggable_id", "taggable_type", "tagger_id", "context"], name: "taggings_idy", using: :btree
+    t.index ["taggable_id"], name: "index_taggings_on_taggable_id", using: :btree
+    t.index ["taggable_type"], name: "index_taggings_on_taggable_type", using: :btree
+    t.index ["tagger_id", "tagger_type"], name: "index_taggings_on_tagger_id_and_tagger_type", using: :btree
+    t.index ["tagger_id"], name: "index_taggings_on_tagger_id", using: :btree
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string  "name"
+    t.integer "taggings_count", default: 0
+    t.index ["name"], name: "index_tags_on_name", unique: true, using: :btree
+  end
+
+  create_table "tourcomments", force: :cascade do |t|
+    t.integer  "tour_id"
+    t.integer  "commenter_id"
+    t.text     "content"
+    t.string   "status"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["commenter_id"], name: "index_tourcomments_on_commenter_id", using: :btree
+    t.index ["tour_id"], name: "index_tourcomments_on_tour_id", using: :btree
+  end
+
+  create_table "tourimages", force: :cascade do |t|
+    t.integer  "tour_id"
+    t.string   "img_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tour_id"], name: "index_tourimages_on_tour_id", using: :btree
+  end
+
+  create_table "tourmembers", force: :cascade do |t|
+    t.integer  "tour_id"
+    t.integer  "member_id"
+    t.string   "role"
+    t.string   "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id", "tour_id"], name: "index_tourmembers_on_member_id_and_tour_id", unique: true, using: :btree
+    t.index ["member_id"], name: "index_tourmembers_on_member_id", using: :btree
+    t.index ["tour_id"], name: "index_tourmembers_on_tour_id", using: :btree
+  end
+
+  create_table "tourratings", force: :cascade do |t|
+    t.integer  "tour_id"
+    t.integer  "user_id"
+    t.integer  "point"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tour_id"], name: "index_tourratings_on_tour_id", using: :btree
+    t.index ["user_id"], name: "index_tourratings_on_user_id", using: :btree
+  end
+
+  create_table "tours", force: :cascade do |t|
+    t.string   "title"
+    t.string   "fromplace"
+    t.string   "toplace"
+    t.datetime "fromtime"
+    t.datetime "totime"
+    t.integer  "maxmember"
+    t.integer  "creator_id"
+    t.decimal  "estimatebudget"
+    t.decimal  "deposit"
+    t.string   "transport"
+    t.text     "description"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
@@ -28,4 +177,7 @@ ActiveRecord::Schema.define(version: 20160806091807) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "tourimages", "tours"
+  add_foreign_key "tourratings", "tours"
+  add_foreign_key "tourratings", "users"
 end

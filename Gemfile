@@ -29,6 +29,10 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
 
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tether', '>= 1.1.0'
+end
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -44,7 +48,16 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem "letter_opener", :group => :development
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'acts-as-taggable-on', '~> 4.0'
+gem 'faker', '~> 1.6', '>= 1.6.6'
+gem "font-awesome-rails"
+gem 'jquery-ui-rails'
+gem 'gmaps-autocomplete-rails'
+# gem 'bootsy', :git => "git@github.com:/llja0112/bootsy.git"
+gem 'sir_trevor_rails'
+gem 'redcarpet', '~> 3.3', '>= 3.3.4'

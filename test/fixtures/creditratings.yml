@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rater_id: 1
+  ratee_id: 1
+  leadership: 1
+  teamwork: 1
+  blogger: 1
+
+two:
+  rater_id: 1
+  ratee_id: 1
+  leadership: 1
+  teamwork: 1
+  blogger: 1

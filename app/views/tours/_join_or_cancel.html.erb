@@ -1,0 +1,5 @@
+<% unless tour.has_pending_request(current_user) %>
+        <%= link_to "Tham Gia", join_request_path(:id => tour.id), method: :post , class: 'btn btn-primary', :remote => true  %>
+        <% else %>
+        <%= link_to "Huy", cancel_request_path(:id => tour.id), method: :post , class: 'btn btn-danger', :remote => true  %>
+        <% end %>
