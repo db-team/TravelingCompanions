@@ -16,49 +16,50 @@
 <br/>
 <br/>
 
-    <div class="field">
-      <%= f.label :title %><br>
-      <%= f.text_field :title, placeholder: "Nhap vao tieu de chuyen di" %>
+    <div class="form-group">
+      <%= f.label "Tieu de" %><br>
+      <%= f.text_field :title, placeholder: "Nhap vao tieu de chuyen di", class: "form-control" %>
     </div>
-    <div class="field">
-      <%= f.label :description %><br>      
-       <%= f.text_area :description %>
+    <div class="form-group">
+      <%= f.label "Mo ta chuyen di" %><br>      
+       <%= f.text_area :description , rows: 15, class: "form-control"%>
     </div>
-    <div class="field">
-      <%= f.label :fromplace %><br>
-      <%= f.text_field :fromplace %>
+    <div class="form-group">
+      <%= f.label "Di tu" %><br>
+      <%= f.text_field :fromplace , class: "form-control"%>
     </div>
 
-    <div class="field"><%= f.label :toplace %><br>
-      <%= f.text_field :toplace %></div>
+    <div class="form-group">
+    <%= f.label "Den" %><br>
+      <%= f.text_field :toplace , class: "form-control"%></div>
 
-      <div class="field">
-        <%= f.label :fromtime %><br>
-        <%= f.datetime_select :fromtime, default: 1.months.from_now %>
+      <div class="form-group">
+        <%= f.label "Tu luc" %><br>
+        <%= f.datetime_select :fromtime, default: 1.months.from_now, class: "form-control" %>
       </div>
 
-      <div class="field">
-        <%= f.label :totime %><br>
-        <%= f.datetime_select :totime, default: 1.months.from_now %>
+      <div class="form-group">
+        <%= f.label "Ve luc" %><br>
+        <%= f.datetime_select :totime, default: 1.months.from_now, class: "form-control" %>
       </div>
 
-      <div class="field">
-        <%= f.label :maxmember %><br>
-        <%= f.number_field :maxmember, :min => 2 %>
+      <div class="form-group">
+        <%= f.label "So thanh vien toi da" %><br>
+        <%= f.number_field :maxmember, :min => 2, class: "form-control" %>
       </div>
 
-      <div class="field">
-        <%= f.label :estimatebudget %><br>
-        <%= f.number_field :estimatebudget, :min => 100000, :step => 50000 %>
+      <div class="form-group">
+        <%= f.label "Chi phi du kien" %><br>
+        <%= f.number_field :estimatebudget, :min => 100000, :step => 50000 , class: "form-control" %>
         </div>      
-      <div class="field">
-        <%= f.label :deposit %><br>
-        <%= f.number_field :deposit, :min => 0, :step => 50000%>
+      <div class="form-group">
+        <%= f.label "Ung truoc" %><br>
+        <%= f.number_field :deposit, :min => 0, :step => 50000, class: "form-control" %>
       </div>
 
-      <div class="field">
-        <%= f.label :transport %><br>
-        <%= f.select :transport, options_for_select(Tour.transport_list) %>
+      <div class="form-group">
+        <%= f.label "Phuong tien" %><br>
+        <%= f.select :transport, options_for_select(Tour.transport_list), class: "form-control" %>
       </div>
 
       <div class="actions">

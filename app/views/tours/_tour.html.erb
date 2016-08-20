@@ -14,13 +14,19 @@
     <div class="col-sm-10 offset-sm-3 col-md-10 offset-md-2 main">
       <div id="tour_description2">
         <div id="tour_title">
-          <h4 class="card-title"><%= tour.title %></h4>
+          <div class="row">
+            <h4 class="card-title"><%= tour.title %></h4> <% if tour.created_by?(current_user.id) %>
+            <%= link_to edit_tour_path(id: tour.id), method: :get do %> 
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+            <% end %>
+            <% end %>
+          </div>
         </div>
         <img class="card-img-top" src="<%= tour.pick_image %>" alt="Card image cap" />
         <div class="card-block" id="inner_description" >
           <div class="main"  > 
             <p class="card-text">
-              <%= tour.description %></p>
+              <%= markdown(tour.description) %></p>
               <p class="card-text"><% tag_cloud Tour.tag_counts, %w[s m l] do |tag, css_class| %>
                 <%= link_to tag.name, nil, class: "tag tag-pill tag-primary" %> 
               </a>  

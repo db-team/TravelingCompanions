@@ -60,3 +60,4 @@ gem 'jquery-ui-rails'
 gem 'gmaps-autocomplete-rails'
 # gem 'bootsy', :git => "git@github.com:/llja0112/bootsy.git"
 gem 'sir_trevor_rails'
+gem 'redcarpet', '~> 3.3', '>= 3.3.4'

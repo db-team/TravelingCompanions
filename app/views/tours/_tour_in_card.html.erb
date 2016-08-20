@@ -1,0 +1,13 @@
+<div class="col-sm-4">
+	<div class="card">
+		<img class="card-img-top" src="<%= tour.pick_image %>" alt="Tour images">
+		<div class="card-block">
+			<h4 class="card-title"><%= tour.title %></h4>
+			<p class="card-text"><%= tour.short_description %></p>
+			<% if is_my_tour?(tour) then %>
+			<a href="#" class="btn btn-primary">Chon thanh vien</a>
+			<a href="#" class="btn btn-primary">Chinh sua</a>
+			<% end %>
+		</div>
+	</div>
+</div>

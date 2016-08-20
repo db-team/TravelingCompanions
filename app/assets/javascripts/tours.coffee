@@ -1,4 +1,6 @@
 $(document).on 'turbolinks:load', ->
+	$('#tour_transport').addClass('form-control')
+
 	$('body').scrollspy({ target: '#myScrollspy' })
 
 	$('[data-spy="scroll"]').each ->
@@ -10,9 +12,8 @@ $(document).on 'turbolinks:load', ->
 		return
 
 	$('.nav-item .nav-link').on 'click', (event) ->
-		navParent = $(this).parent().parent()
-		console.log navParent.children().children()
-		navParent.children().children().removeClass('active')
+		navParent = $(this).parents('nav')
+		navParent.find('a.nav-link').removeClass('active')
 		$(this).addClass 'active'
 		event.preventDefault();
 		return

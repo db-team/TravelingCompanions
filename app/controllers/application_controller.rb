@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user
+  helper_method :is_my_tour?
   before_action :set_locale
   
   def set_locale
@@ -23,8 +24,11 @@ def current_user
   if session[:user_id]
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   else
-    User.find(5)
+    User.find(29)
   end
 end
 
+def is_my_tour?(tour)
+  tour.created_by?(current_user.id)
+end
 end

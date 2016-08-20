@@ -22,46 +22,59 @@ class Tour < ApplicationRecord
 		["Xe may", "Tau lua", "May bay", "Xe khach"]
 	end
 
+	def short_description
+		description[0..100] + ' ... '
+	end
+
+	def created_by?(user_id)
+		return creator.id == user_id
+	end
+
+	def created_by_me?
+		created_by?(current_user.id)
+	end
+
 	def sorted_members
 		h = {1=>"pending", 2=>"approved", 3=>"rejected", 4=>"cancelled"}
-		tourmembers.sort_by do |m| h.key(m.status) end
+		tourmembers.sort_by do |m| h.key(m.status) 
 		end
-		def find_member(user)
-			tourmembers.find_by(member_id: user.id)
-		end
+	end
+	def find_member(user)
+		tourmembers.find_by(member_id: user.id)
+	end
 
-		def join_request(user)
-			m = find_member(user)
-			unless m
-				Tourmember.create!(:tour => self, :member => user, :role => 'member', :status => 'pending')
-			else
-				m.pending		
-			end
+	def join_request(user)
+		m = find_member(user)
+		unless m
+			Tourmember.create!(:tour => self, :member => user, :role => 'member', :status => 'pending')
+		else
+			m.pending		
 		end
+	end
 
-		def pick_member(user)
-			tourmembers.where(:user => user).approved
-		end
+	def pick_member(user)
+		tourmembers.where(:user => user).approved
+	end
 
-		def reject(user)
-			tourmembers.where(:user => user).first.reject
-		end
+	def reject(user)
+		tourmembers.where(:user => user).first.reject
+	end
 
-		def cancel_request(user)
-			tourmembers.where(:member_id => user.id).first.cancel
-		end
+	def cancel_request(user)
+		tourmembers.where(:member_id => user.id).first.cancel
+	end
 
-		def all_member_names
-			tourmembers.map{|m| m.member.username}.to_sentence
-		end
+	def all_member_names
+		tourmembers.map{|m| m.member.username}.to_sentence
+	end
 
-		def pending_member_names
-			pending_members.map{|m| m.member.username}.to_sentence
-		end
+	def pending_member_names
+		pending_members.map{|m| m.member.username}.to_sentence
+	end
 
-		def has_pending_request(user)
-			pending_members.find_by(member_id: user.id)
-		end
+	def has_pending_request(user)
+		pending_members.find_by(member_id: user.id)
+	end
 
 	# def pending_members
 	# 	members.merge(Tourmember.pending_members)

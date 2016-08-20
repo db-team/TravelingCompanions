@@ -14,9 +14,25 @@ class ToursController < ApplicationController
 	def edit 
 		@tour = Tour.find(params[:id])
 	end
+
+	def update
+		@tour = Tour.find(params[:id])
+		respond_to do |format|
+			if @tour.update(tourparams)
+				format.html { redirect_to @tour, notice: 'Tour was successfully updated.' }
+				format.json { render :show, status: :ok, location: @tour }
+			else
+				format.html { render :edit }
+				format.json { render json: @tour.errors, status: :unprocessable_entity }
+			end
+		end
+	end
+
+
 	
 	def create
 		@tour = Tour.new tourparams
+		byebug
 		@tour.creator = current_user
 
 		if @tour.save
@@ -71,10 +87,6 @@ class ToursController < ApplicationController
 		end
 	end
 
-	def update
-
-	end
-
 	def rate
 		curr_user = current_user
 		@tour = Tour.find(params[:id])
@@ -98,4 +110,7 @@ class ToursController < ApplicationController
 			:bootsy_image_gallery_id) 
 	end
 
+	def create_markdown
+		return Redcarpet::Markdown.new(renderer, extensions = {})
+	end
 end
