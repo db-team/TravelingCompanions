@@ -1,8 +1,7 @@
 //= require jquery
 //= require jquery_ujs
-//= require tether
 //= require bootstrap
 //= require bootsy
+//= require turbolinks
 //= require tourcomment
 //= require tours
-//= require turbolinks

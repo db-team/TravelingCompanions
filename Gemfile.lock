@@ -242,9 +242,7 @@ DEPENDENCIES
   pg (~> 0.18)
   puma (~> 3.0)
   rails (~> 5.0.0)
-  rails-assets-tether (>= 1.1.0)!
   sass-rails
-  sir_trevor_rails
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
