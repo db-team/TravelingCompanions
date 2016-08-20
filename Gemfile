@@ -27,7 +27,6 @@ source 'https://rails-assets.org' do
 end
 
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
-gem 'acts-as-taggable-on'
 
 group :development, :test do
   gem 'byebug', platform: :mri
