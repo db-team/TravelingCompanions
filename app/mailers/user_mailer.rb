@@ -12,4 +12,13 @@ class UserMailer < ApplicationMailer
     @tour  = tour
     mail(to: @emails, subject: "Chuyen di #{@tour.title} vua nhan them binh luan. Ban co the se muon kiem tra day.")
   end
+  def account_activation(user)
+    @user = user
+    mail to: user.email, subject: "Account activation at TravelGo social"
+  end
+
+  def password_reset(user)
+    @user = user
+    mail to: user.email, subject: "Password reset request from TravelGo social"
+  end
 end

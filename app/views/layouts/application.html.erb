@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>Travelcompanion</title>
-<%= csrf_meta_tags %>
-<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-</head>
+  <head>
+    <title><%= full_title(yield(:title)) %></title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
 
-<body>
-<%= render partial: 'layouts/header' %> 
-<div class="container">
-<%= yield %>
-</div>
+  <body>
+  	<%= render 'layouts/header' %>
 
-</body>
+		<div class="content">
+			<% flash.each do |message_type, message| %>
+      	<div class="alert alert-<%= message_type %>"><%= message.html_safe %></div>
+      <% end %>
+      <%= yield %>
+      
+		</div>
+    <%= filepicker_js_include_tag %>
+  </body>
 </html>

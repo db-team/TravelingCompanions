@@ -1,0 +1,14 @@
+<% provide(:title, @user.username) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+        <%= image_tag  @user.avatar_url, class: 'img-circle' %>
+        <%= @user.name %><br>
+        @<%= @user.username %>
+    </section>
+    <section class="stats">
+	    <%= render 'shared/stats' %>
+	  </section>
+	  <%= render 'follow_form' if logged_in? %>
+  </aside>
+</div>

@@ -12,9 +12,10 @@ $(document).on 'turbolinks:load', ->
 		return
 
 	$('.nav-item .nav-link').on 'click', (event) ->
+		event.preventDefault();
 		navParent = $(this).parents('nav')
 		navParent.find('a.nav-link').removeClass('active')
-		$(this).addClass 'active'
-		event.preventDefault();
+		$(this).addClass 'active'	
+		$(document).scrollTop( $("#header").offset().top );
 		return
 return
