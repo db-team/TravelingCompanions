@@ -34,6 +34,18 @@ class Tour < ApplicationRecord
 		created_by?(current_user.id)
 	end
 
+	def enough_members?
+		return total_approved_members >= maxmember
+	end
+
+	def total_pending_members
+		pending_members.count
+	end
+
+	def total_approved_members
+		approved_members.count
+	end
+
 	def sorted_members
 		h = {1=>"pending", 2=>"approved", 3=>"rejected", 4=>"cancelled"}
 		tourmembers.sort_by do |m| h.key(m.status) 
@@ -43,25 +55,25 @@ class Tour < ApplicationRecord
 		tourmembers.find_by(member_id: user.id)
 	end
 
-	def join_request(user)
-		m = find_member(user)
+	def join_request(user_id)
+		m = find_member(user_id)
 		unless m
-			Tourmember.create!(:tour => self, :member => user, :role => 'member', :status => 'pending')
+			Tourmember.create!(:tour => self, :member => user_id, :role => 'member', :status => 'pending')
 		else
 			m.pending		
 		end
 	end
 
-	def pick_member(user)
-		tourmembers.where(:user => user).approved
+	def pick_member(user_id)
+		tourmembers.where(:member_id => user_id).first.approved
 	end
 
-	def reject(user)
-		tourmembers.where(:user => user).first.reject
+	def reject_member(user_id)
+		tourmembers.where(:member_id => user_id).first.rejected
 	end
 
-	def cancel_request(user)
-		tourmembers.where(:member_id => user.id).first.cancel
+	def cancel_request(user_id)
+		tourmembers.where(:member_id => user_id).first.cancelled
 	end
 
 	def all_member_names
@@ -72,8 +84,16 @@ class Tour < ApplicationRecord
 		pending_members.map{|m| m.member.username}.to_sentence
 	end
 
+	def approved_member_names
+		approved_members.map{|m| m.member.username}.to_sentence
+	end
+
 	def has_pending_request(user)		
 		return pending_members.find_by(:id => user.id) if user
+	end
+
+	def has_request_from?(user)
+		return true if user && members.find_by(:id => user.id) 
 	end
 
 	# def pending_members

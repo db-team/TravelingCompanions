@@ -8,7 +8,6 @@ $(document).on 'turbolinks:load', ->
 		return
 
 	$('#myScrollspy').on 'activate.bs.scrollspy', ->
-		console.log('new nav-link reached !!!')
 		return
 
 	$('.nav-item .nav-link').on 'click', (event) ->
@@ -16,6 +15,7 @@ $(document).on 'turbolinks:load', ->
 		navParent = $(this).parents('nav')
 		navParent.find('a.nav-link').removeClass('active')
 		$(this).addClass 'active'	
-		$(document).scrollTop( $("#header").offset().top );
+		section = $(this).attr('href')
+		$(document).scrollTop($(section).offset().top );
 		return
 return

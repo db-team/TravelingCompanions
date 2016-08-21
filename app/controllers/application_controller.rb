@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :is_my_tour?
   before_action :set_locale
+  after_filter :flash_headers, if: Proc.new {|c| c.request.xhr? }
+
   include SessionsHelper
 
   
@@ -34,10 +36,11 @@ def is_my_tour?(tour)
   end
 end
 
-  include SessionsHelper
 
-  private
 
+include SessionsHelper
+
+private
     # Confirms a logged-in user.
     def logged_in_user
       unless logged_in?
@@ -46,14 +49,11 @@ end
         redirect_to login_url
       end
     end
-  private
 
-    # Confirms a logged-in user.
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
+    def flash_headers
+     types = %i(error notice warning)
+     types.each do |type|
+      response.headers['x-flash'] = flash.now.send(type) unless flash.now[type].blank?
     end
+  end
 end

@@ -1,8 +1,29 @@
-<% members.each do |member| %>
-<div class="row">
-<div class="col-md-10"><%= member.member.username %></div>
- <div class="col-md-2"> 
-	<%= span_tag(member.status) %> 
-</div>
-</div>
+<% case member.status %>
+<% when 'pending'  %>
+<% status,color,tag_suffix,tag_hover,status_hover = 'pending', 'gray', 'tag-default', 'tag-success', 'approved' %>
+<% action = link_to "Chon", tour_pick_member_path(:tour_id => tour.id, :user_id => member.member_id), :method => :post, :remote => true, class: "btn btn-primary pick-member" %>
+
+
+<% when 'approved' %>
+<% status,color,tag_suffix,tag_hover,status_hover ='approved', 'green', 'tag-success', 'tag-danger', 'rejected'  %>
+<% action = link_to "Loai", tour_reject_member_path(:tour_id => tour.id, :user_id => member.member_id), :method => :post, :remote => true, class: "btn btn-danger pick-member" %>
+
+
+<% when 'rejected' %>
+<% status,color,tag_suffix,tag_hover,status_hover ='rejected', 'red', 'tag-danger', 'tag-success', 'approved'  %>
+<% action = link_to "Chon", tour_pick_member_path(:tour_id => tour.id, :user_id => member.member_id), :method => :post, :remote => true, class: "btn btn-primary pick-member" %>
+<% when 'cancelled' %>
+<% status,color,tag_suffix,tag_hover,status_hover ='cancelled', 'red', 'tag-danger', 'tag-success', 'approved'  %>
+<% action = link_to "Chon", tour_pick_member_path(:tour_id => tour.id, :user_id => member.member_id), :method => :post, :remote => true, class: "btn btn-primary pick-member" %>
 <% end %>
+<div class="row" id="member_status<%= member.member_id%>">
+
+	<div class="col-xs-10">
+		<span class="tag <%= tag_suffix %> member_status"><%= status %></span>
+		<%= "#{member.member.username}" %>
+	</div>
+	<div class="col-xs-2">
+	<%= action %> 
+	</div>
+	<hr/>
+</div>

@@ -3,6 +3,24 @@ height: 200px;
 width: 100%
 }
 
+.card-block {
+	padding: 0px
+}
+.tour-title .tour-time {
+	max-height: 17px;
+}
+
+.tour-card {
+	margin-bottom: 10px
+}
+
+.img-rounded {
+	max-width: 250px;
+	height: auto;
+	margin-right: 10px;
+
+}
+
 .card-title {
 	padding-left: 10px
 }
@@ -52,6 +70,9 @@ transition: margin-left .4s;
 
 .card {
 border: 0px
+}
+.card-img-top {
+height: 360px
 }
 li.list-group-item {
 margin-top: 2px;
