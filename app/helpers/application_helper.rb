@@ -1,5 +1,9 @@
 module ApplicationHelper
 	
+	def has_join_request?(tour)
+		return tour.has_request_from?(current_user) if current_user
+	end
+
 	def toVND(price)
 		#return number_to_currency(price, locale: :vi)  
 		return number_to_currency(price, unit: "VND", separator: ",", delimiter: ".", format: "%n %u", precision: 0)
@@ -8,6 +12,10 @@ module ApplicationHelper
 
 	def toVNTimezone(dt)
 		return dt.strftime('%d/%m/%Y %k:%M')
+	end
+
+	def toVNDate(dt)
+		return dt.strftime('%d/%m/%Y')
 	end
 
 	def span_tag(status)

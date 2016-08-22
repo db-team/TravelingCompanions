@@ -1,0 +1,11 @@
+<br/>
+<br/>
+<br/>
+<div class="container">
+<h4 class="members_info"><%= "#{@tour.total_approved_members.to_s} duoc chon / #{@tour.total_pending_members.to_s} dang cho duyet" %></h4>
+
+<% @tour.sorted_members.each do |member| %>
+<%= render 'member_list', tour: @tour, member: member %>
+<% end %>
+
+</div>

@@ -11,20 +11,19 @@ class Tourmember < ApplicationRecord
 	# scope :cancelled_members, -> {where(status: :cancelled)}
 
 	def approved
-		status = :approved
+		update(:status => "approved") 
+
 	end
 
-	def reject
-		status = :reject
+	def rejected
+		update(:status => "rejected")
 	end
 
 	def pending
-		self.status = :pending
-		self.save
+		update(:status => "pending")
 	end
 
-	def cancel
-		self.status = :cancelled
-		self.save
+	def cancelled
+		update(:status => "cancelled")
 	end
 end

@@ -36,7 +36,7 @@
           <ul class="list-group list-group-flush" id="detail">
             <li class="list-group-item">Thoi gian: <span class="tag tag-info"><%= toVNTimezone(tour.fromtime) %></span> - <span class="tag tag-info"><%= toVNTimezone(tour.totime) %> </span> </li>
             <li class="list-group-item">Lo trinh: <%= tour.travel_route %> </li>
-            <li class="list-group-item">So thanh vien: <%= tour.maxmember %></li>
+            <li class="list-group-item">So thanh vien toi da: <%= tour.maxmember %></li>
             <li class="list-group-item">Chi phi du kien: <span class="tag tag-info"> <%= toVND(tour.estimatebudget) %> </span></li>
             <li class="list-group-item" id="pending_members"> <%= render 'pending_members', tour: tour %></li>
           </ul>

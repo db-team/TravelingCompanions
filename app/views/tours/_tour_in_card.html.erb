@@ -1,13 +1,24 @@
-<div class="col-sm-6">
-	<div class="card">
-		<img class="card-img-top" src="<%= tour.pick_image %>" alt="Tour images">
-		<div class="card-block">
-			<h4 class="card-title"><%= link_to tour.title, tour_path(tour.id) %></h4>
-			<p class="card-text"><%= tour.short_description %></p>
-			<% 	if is_my_tour?(tour) then %>
-			<a href="#" class="btn btn-primary">Chon thanh vien</a>
-			<a href="#" class="btn btn-primary">Chinh sua</a>
-			<% end %>
-		</div>
+<div class="row tour-card">
+	<img class="img-rounded pull-xs-left" src="<%= tour.pick_image %>" alt="Tour images">
+	
+	<div class="pull-xs-right">
+		<p> tu <span class="tag tag-info"><%= toVND tour.estimatebudget %></span></p>
+		<% unless is_my_tour?(tour) %>
+		<% unless has_join_request?(tour) %>
+		<%= render 'join_or_cancel', tour: tour %>
+		<% end %>
+		<% else %>
+		<%= link_to "Chon thanh vien", tour_browse_members_path(tour.id), class: "btn btn-primary" %>
+		<% end %>
 	</div>
+	<div >
+		<h4  class="tour-title"><%= link_to tour.title, tour_path(tour.id), class: "tour-title" %></h4>
+		
+		<p class="tour-time"> Tu <%= toVNDate tour.fromtime %> - <%= toVNDate tour.totime %> <%= tour.total_rate_up %> <i class="fa fa-thumbs-o-up"> </i> </p> 		
+		<% tour.tag_list.each do |tag| %>
+		<span class="tag tag-info"><%= tag %></span>
+		<% end %>
+	</div>
+
+	
 </div>
