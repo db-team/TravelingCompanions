@@ -1,22 +1,39 @@
+//@import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
-// @import "custom";
 @import  "bootsy";
 @import "blogs";
+@import "welcome";
 
-
+a:hover  {
+    color: #44babb;
+    text-decoration: none;
+}
+a:focus {
+    outline: medium none;
+    text-decoration: none;
+}
 html {
-    font-family: sans-serif;
+    font-family: Arial,sans-serif;
+    background-color: #F5F8FA;
 }
 body {
-    margin: 0;
+    color: #292f33;
+    font-size: 14px;
+    line-height: 18px;
 }
 
-nav {
-  background-color: #3097d1;
-  border: 1px solid #1c73a5;
+ol, ul {
+    list-style: outside none none;
+    list-style-type: none;
+}
+
+nav.index {
+  background: #fff none repeat scroll 0 0;
+  border-bottom: 1px solid #eee;
+  height: 46px;
+  color: #292f33;
   .btn {
-    margin-top: 3px;
     -moz-appearance: none;
     -moz-user-select: none;
     border-radius: 3px;
@@ -32,5 +49,5 @@ nav {
 }
 
 .content {
-    margin-top: 70px;
+    margin-top: 50px;
 }

@@ -22,7 +22,11 @@ class User < ApplicationRecord
   has_many :reported, class_name: "Reportuser", foreign_key: "reportee_id"
   has_many :tourratings
   has_many :tours, class_name: 'Tour', :foreign_key => "creator"
-
+  
+  paginates_per 20
+  
+  scope :activated, -> { where(activated: true) }
+  
   # Returns the hash digest of the given string.
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -30,7 +34,7 @@ class User < ApplicationRecord
     BCrypt::Password.create(string, cost: cost)
   end
 
- def get_avatar
+  def get_avatar
   	avatar_url
   end
   

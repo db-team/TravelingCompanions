@@ -12,9 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20160820022015) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "blogs", force: :cascade do |t|
     t.string   "title"
     t.text     "extended_html_content"
@@ -47,9 +44,9 @@ ActiveRecord::Schema.define(version: 20160820022015) do
     t.string   "status"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.index ["blog_id"], name: "index_comments_on_blog_id", using: :btree
-    t.index ["commenter_id", "blog_id"], name: "index_comments_on_commenter_id_and_blog_id", unique: true, using: :btree
-    t.index ["commenter_id"], name: "index_comments_on_commenter_id", using: :btree
+    t.index ["blog_id"], name: "index_comments_on_blog_id"
+    t.index ["commenter_id", "blog_id"], name: "index_comments_on_commenter_id_and_blog_id", unique: true
+    t.index ["commenter_id"], name: "index_comments_on_commenter_id"
   end
 
   create_table "creditratings", force: :cascade do |t|
@@ -60,9 +57,9 @@ ActiveRecord::Schema.define(version: 20160820022015) do
     t.integer  "blogger"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["ratee_id"], name: "index_creditratings_on_ratee_id", using: :btree
-    t.index ["rater_id", "ratee_id"], name: "index_creditratings_on_rater_id_and_ratee_id", unique: true, using: :btree
-    t.index ["rater_id"], name: "index_creditratings_on_rater_id", using: :btree
+    t.index ["ratee_id"], name: "index_creditratings_on_ratee_id"
+    t.index ["rater_id", "ratee_id"], name: "index_creditratings_on_rater_id_and_ratee_id", unique: true
+    t.index ["rater_id"], name: "index_creditratings_on_rater_id"
   end
 
   create_table "followings", force: :cascade do |t|
@@ -70,9 +67,9 @@ ActiveRecord::Schema.define(version: 20160820022015) do
     t.integer  "followee_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["followee_id"], name: "index_followings_on_followee_id", using: :btree
-    t.index ["follower_id", "followee_id"], name: "index_followings_on_follower_id_and_followee_id", unique: true, using: :btree
-    t.index ["follower_id"], name: "index_followings_on_follower_id", using: :btree
+    t.index ["followee_id"], name: "index_followings_on_followee_id"
+    t.index ["follower_id", "followee_id"], name: "index_followings_on_follower_id_and_followee_id", unique: true
+    t.index ["follower_id"], name: "index_followings_on_follower_id"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -80,9 +77,9 @@ ActiveRecord::Schema.define(version: 20160820022015) do
     t.integer  "followed_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["followed_id"], name: "index_relationships_on_followed_id", using: :btree
-    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true, using: :btree
-    t.index ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
+    t.index ["followed_id"], name: "index_relationships_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
   create_table "report_users", force: :cascade do |t|
@@ -91,9 +88,9 @@ ActiveRecord::Schema.define(version: 20160820022015) do
     t.text     "reason"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["reportee_id"], name: "index_report_users_on_reportee_id", using: :btree
-    t.index ["reporter_id", "reportee_id"], name: "index_report_users_on_reporter_id_and_reportee_id", unique: true, using: :btree
-    t.index ["reporter_id"], name: "index_report_users_on_reporter_id", using: :btree
+    t.index ["reportee_id"], name: "index_report_users_on_reportee_id"
+    t.index ["reporter_id", "reportee_id"], name: "index_report_users_on_reporter_id_and_reportee_id", unique: true
+    t.index ["reporter_id"], name: "index_report_users_on_reporter_id"
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -104,21 +101,21 @@ ActiveRecord::Schema.define(version: 20160820022015) do
     t.integer  "tagger_id"
     t.string   "context",       limit: 128
     t.datetime "created_at"
-    t.index ["context"], name: "index_taggings_on_context", using: :btree
-    t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
-    t.index ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
-    t.index ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
-    t.index ["taggable_id", "taggable_type", "tagger_id", "context"], name: "taggings_idy", using: :btree
-    t.index ["taggable_id"], name: "index_taggings_on_taggable_id", using: :btree
-    t.index ["taggable_type"], name: "index_taggings_on_taggable_type", using: :btree
-    t.index ["tagger_id", "tagger_type"], name: "index_taggings_on_tagger_id_and_tagger_type", using: :btree
-    t.index ["tagger_id"], name: "index_taggings_on_tagger_id", using: :btree
+    t.index ["context"], name: "index_taggings_on_context"
+    t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+    t.index ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
+    t.index ["taggable_id", "taggable_type", "tagger_id", "context"], name: "taggings_idy"
+    t.index ["taggable_id"], name: "index_taggings_on_taggable_id"
+    t.index ["taggable_type"], name: "index_taggings_on_taggable_type"
+    t.index ["tagger_id", "tagger_type"], name: "index_taggings_on_tagger_id_and_tagger_type"
+    t.index ["tagger_id"], name: "index_taggings_on_tagger_id"
   end
 
   create_table "tags", force: :cascade do |t|
     t.string  "name"
     t.integer "taggings_count", default: 0
-    t.index ["name"], name: "index_tags_on_name", unique: true, using: :btree
+    t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
   create_table "tourcomments", force: :cascade do |t|
@@ -128,8 +125,8 @@ ActiveRecord::Schema.define(version: 20160820022015) do
     t.string   "status"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.index ["commenter_id"], name: "index_tourcomments_on_commenter_id", using: :btree
-    t.index ["tour_id"], name: "index_tourcomments_on_tour_id", using: :btree
+    t.index ["commenter_id"], name: "index_tourcomments_on_commenter_id"
+    t.index ["tour_id"], name: "index_tourcomments_on_tour_id"
   end
 
   create_table "tourimages", force: :cascade do |t|
@@ -137,7 +134,7 @@ ActiveRecord::Schema.define(version: 20160820022015) do
     t.string   "img_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["tour_id"], name: "index_tourimages_on_tour_id", using: :btree
+    t.index ["tour_id"], name: "index_tourimages_on_tour_id"
   end
 
   create_table "tourmembers", force: :cascade do |t|
@@ -147,9 +144,9 @@ ActiveRecord::Schema.define(version: 20160820022015) do
     t.string   "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["member_id", "tour_id"], name: "index_tourmembers_on_member_id_and_tour_id", unique: true, using: :btree
-    t.index ["member_id"], name: "index_tourmembers_on_member_id", using: :btree
-    t.index ["tour_id"], name: "index_tourmembers_on_tour_id", using: :btree
+    t.index ["member_id", "tour_id"], name: "index_tourmembers_on_member_id_and_tour_id", unique: true
+    t.index ["member_id"], name: "index_tourmembers_on_member_id"
+    t.index ["tour_id"], name: "index_tourmembers_on_tour_id"
   end
 
   create_table "tourratings", force: :cascade do |t|
@@ -158,8 +155,8 @@ ActiveRecord::Schema.define(version: 20160820022015) do
     t.integer  "point"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["tour_id"], name: "index_tourratings_on_tour_id", using: :btree
-    t.index ["user_id"], name: "index_tourratings_on_user_id", using: :btree
+    t.index ["tour_id"], name: "index_tourratings_on_tour_id"
+    t.index ["user_id"], name: "index_tourratings_on_user_id"
   end
 
   create_table "tours", force: :cascade do |t|
@@ -188,16 +185,14 @@ ActiveRecord::Schema.define(version: 20160820022015) do
     t.string   "activation_digest"
     t.boolean  "activated",         default: false
     t.datetime "activated_at"
+    t.string   "avatar_url"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
     t.string   "avatar"
-    t.index ["email"], name: "index_users_on_email", using: :btree
-    t.index ["username"], name: "index_users_on_username", using: :btree
+    t.index ["email"], name: "index_users_on_email"
+    t.index ["username"], name: "index_users_on_username"
   end
 
-  add_foreign_key "tourimages", "tours"
-  add_foreign_key "tourratings", "tours"
-  add_foreign_key "tourratings", "users"
 end

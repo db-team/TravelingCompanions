@@ -3,6 +3,7 @@ class Blog < ApplicationRecord
 	belongs_to :author, class_name: 'User'
 	validates :extended_html_content, :photo_url, presence: true
 	acts_as_taggable
+	mount_uploader :photo_url, ImageUploader
 
 	scope :published, -> { where(published: true) }
 

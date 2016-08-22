@@ -1,9 +1,45 @@
-<div class="center jumbotron">
-  <h1>Welcome to the TravelGo App</h1>
-
-  <h2>
-    This is the home page for the Travel Go social!
-  </h2>
-
-  <%= link_to "Sign up now!", signup_url, class: "btn btn-lg btn-primary" %>
+<%= render 'welcome/header' %>
+<%= render 'welcome/web_info' %>
+<%= render 'welcome/stat' %>
+<div class="PubWrapers Dark BorderBottom">
+  <div class="container soft-ends">
+    <h3 class="SectionHeading"> GoTravel Blog </h3>
+    <% @blogs.each do |blog| %>
+      <div class="media HomeBlogFeed">
+        <div class="LargeBlog HomeBlogImg media-img nailthumb-container" style="overflow: hidden; padding: 0px; width: 216px; height: 126px;">
+          <%= image_tag blog.photo_url, :style => 'position: relative; width: 216px; height: 144px; top: 0px; left: 0px;' %>
+        </div>
+        <div class="media__body HomeBlogContent">
+          <h4 class="HomeBlogHeading">
+            <%= blog.title %>
+          </h4>
+          <p class="HomeBlogPost">
+            <%= truncate(strip_tags(blog.extended_html_content), length: 300, :omission => "...") %>
+		        [<%= link_to 'read more <i class="fa fa-angle-double-right" aria-hidden="true"></i>'.html_safe, blog %>] 
+          </p>
+          <ul class="HomeBlogInfo">
+            <li>
+              <%= blog.published_at %>
+            </li>
+            <li>
+              <%= blog.author.name %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="PubWrapers Light BorderBottom">
+  <div class="container soft-ends">
+    <div class="col-md-2 NewsPreviewText">Many Thanks to</div>
+    <div class="col-md-6">
+      <img alt="" src="http://i.imgur.com/k1kfoTn.png">
+    </div>
+  </div>
+</div>
+<div class="PubWrapers Dark">
+  <div class="container solf-ends" style="text-align: center; padding-top: 20px; padding-bottom: 20px;">
+    <b>db-team - CoderSchool</b> 
+  </div>
 </div>

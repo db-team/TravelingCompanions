@@ -17,6 +17,7 @@ class Tour < ApplicationRecord
 	scope :inactive, -> {where('fromtime <= ? ', DateTime.now)}
 	scope :red, -> { where(color: 'red') }
 	scope :of_user, -> (user) { where(creator: user)}
+	scope :upcoming, -> {where('fromtime >= :three_days', :three_days => Time.zone.now + 3.days)}
 
 	def self.transport_list
 		["Xe may", "Tau lua", "May bay", "Xe khach"]

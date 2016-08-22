@@ -1,0 +1,15 @@
+<% @upcoming_trips.each do |ut| %>
+<div class="RoundedBox LightBox push-half--bottom">
+  <div class="RoundedBoxContent">
+    <div class="media">
+      <div class="media-img"><%= image_tag ut.creator.avatar_url, :class => 'img-thumbnail', :style => "overflow: hidden; padding: 0px; width: 72px; height: 72px;" %></div>
+      <h5 class="push-half--botom"><%= ut.creator.name %></h5>
+      <b>Wants to travel to:</b>
+      <p style="margin-bottom: 0">
+        <%= ut.toplace %><br>
+        <%= link_to 'View trip details', tour_path(ut) %> 
+      </p>
+    </div>
+  </div>
+</div>
+<% end %>

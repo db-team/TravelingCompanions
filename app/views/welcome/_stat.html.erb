@@ -1,0 +1,36 @@
+<div class="PubWrapers Light BorderBottom">
+  <div class="container">
+    <div class="col-md-4 soft">
+      <h3 class="SelectionHeading">Popular upcoming trips</h3>
+      <%= render 'welcome/upcoming_trip' %> 
+    </div>
+    <div class="col-md-4 soft">
+      <h3 class="SelectionHeading">Top 10 Destinations</h3>
+      <ul class="ListStyle ListDecimal">
+        <% @destinations.each do |desti| %>
+          <li><%= desti.first %></li>
+        <% end %>
+      </ul>
+    </div>
+     <div class="col-md-4 soft">
+      <h3 class="SelectionHeading">Register for free today!</h3>
+      <div class="RoundedBox LightBox">
+        <div class="RoundedBoxContent">
+          <ul class="SmallForm">
+            <%= form_for(@user) do |f| %>
+              <li><%= f.text_field :name, placeholder: "Name", class: 'form-control' %></li>
+              
+              <li><%= f.text_field :username, placeholder: "Username", class: 'form-control' %></li>
+            
+              <li><%= f.email_field :email, placeholder: "Email", class: 'form-control' %></li>
+              
+              <li><%= f.password_field :password, placeholder: "Password", class: 'form-control' %></li>        
+                
+              <%= f.submit 'Register Now', class: "btn btn-success" %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

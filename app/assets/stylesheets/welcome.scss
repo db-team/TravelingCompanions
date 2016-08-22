@@ -1,0 +1,292 @@
+.Hero {
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 300px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+.Hero.HeroTall {
+    height: 500px;
+    background-position: center center;
+}
+.HeroInfo {
+    display: inline-block;
+    float: right;
+    padding-left: 9px;
+    padding-right: 9px;
+    padding-top: 15%;
+    width: 50%;
+    text-align: center !important;
+}
+.HeroInfoHeader {
+    color: #f3f3f3;
+    font-size: 60px;
+    margin-bottom: 0;
+}
+.btn-primary-dark {
+    color: #f3f3f3;
+    margin-top: 18px !important;
+    border-color: transparent;
+    border-radius: 4px;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 36px;
+    margin-bottom: 9px;
+    min-width: 90px;
+    padding: 0 9px;
+    text-align: center;
+    transition: all 0.2s ease-in-out 0s;
+    vertical-align: middle;
+    width: auto;
+    a {
+      outline: medium none;
+      text-decoration: none;  
+    }
+}
+.PubWrapers.Light {
+    background-color: #f6f6f6;
+}
+.PubWrapers.Dark {
+    background-color: #2a3d4c;
+    color: #f3f3f3;
+}
+.BorderEnds {
+    border-bottom: 1px solid #dbdbdb;
+    border-top: 1px solid #dbdbdb;
+}
+.CountStatsContainer {
+    display: table;
+    height: 150px;
+    overflow: visible;
+    position: relative;
+    table-layout: fixed;
+    width: 100%;
+}
+.CountStatsWrap.CountStatImg {
+    vertical-align: bottom;
+}
+@media all and (max-width: 47.99em) {
+.CountStatsWrap.CountStatImg {
+    display: none;
+}
+}
+.CountStatsWrap.CountStatImg img {
+    margin-top: -75px;
+    width: 100%;
+}
+.CountStatsWrap {
+    display: table-cell;
+    vertical-align: middle;
+}
+.CountStats {
+    overflow: hidden;
+}
+.CountStatsHeading {
+    color: #69c8c9;
+    font-size: 45px;
+    font-weight: 100;
+    line-height: 1;
+    margin-bottom: 0;
+}
+.CountStatsIcon {
+    background: #2a3d4c none repeat scroll 0 0;
+    border: 1px solid #06080a;
+    border-radius: 100%;
+    color: #f3f3f3;
+    display: inline-block;
+    float: left;
+    font-size: 30px;
+    height: 45px;
+    line-height: 45px;
+    margin-top: 9px;
+    text-align: center;
+    width: 45px;
+}
+.CountStatsSubHeading {
+    font-size: 14px;
+    line-height: 1;
+    margin-bottom: 0;
+}
+.PubWrapers.Light {
+    background-color: #f6f6f6;
+}
+.BorderBottom {
+    border-bottom: 1px solid #dbdbdb;
+}
+.SectionHeading {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 9px;
+}
+.soft {
+    padding: 18px !important;
+}
+.soft-ends {
+    padding-bottom: 18px !important;
+    padding-top: 18px !important;
+}
+.RoundedBox.LightBox {
+    background-color: #fcfcfc;
+    border: 1px solid #dbdbdb;
+    color: #4a4a4a;
+}
+.RoundedBox {
+    border-radius: 4px;
+}
+.push-half--bottom {
+    margin-bottom: 9px !important;
+}
+.RoundedBoxContent {
+    padding: 9px;
+}
+.media {
+    display: block;
+}
+.media-img {
+  float: left;
+  margin-right: 28px;
+}
+.media-img--rev {
+    float: right;
+    margin-left: 18px;
+}
+.media-img img, .media-img--rev img {
+    display: block;
+}
+.media__body {
+    overflow: hidden;
+}
+.media__body, .media__body > *:last-child {
+    margin-bottom: 0;
+}
+.islet .media-img {
+    margin-right: 9px;
+}
+.islet .media-img--rev {
+    margin-left: 9px;
+}
+.push-half--bottom {
+    margin-bottom: 9px !important;
+}
+.ListStyle.ListDecimal {
+    list-style-type: decimal;
+}
+.ListStyle {
+    margin-left: 0;
+    padding: 4.5px 4.5px 4.5px 45px;
+    li {
+      margin-bottom: 9px;
+    }
+}
+.SmallForm {
+    margin-left: -40px;
+}
+.SmallForm li {
+    margin-bottom: 9px;
+    padding-left: -50px;
+}
+.HomeBlogFeed .HomeBlogImg {
+    border-radius: 4px;
+}
+@media all and (max-width: 29.99em) {
+.HomeBlogFeed .HomeBlogImg {
+    float: none;
+}
+}
+.HomeBlogFeed .HomeBlogContent {
+    margin-bottom: 9px;
+}
+.HomeBlogFeed .HomeBlogHeading {
+    color: #69c8c9;
+    font-size: 20px;
+    margin-bottom: 9px;
+}
+.HomeBlogFeed .HomeBlogPost {
+    font-size: 14px;
+    margin-bottom: 9px;
+}
+.HomeBlogFeed .HomeBlogInfo {
+    font-size: 12px;
+    margin-bottom: 0;
+    margin-left: -40px;
+}
+.HomeBlogFeed .HomeBlogInfo li {
+    display: inline-block;
+}
+.HomeBlogFeed .HomeBlogInfo li::after {
+    content: "∙";
+    font-size: 14px;
+    font-weight: 900;
+    line-height: 12px;
+    padding-left: 4.5px;
+    padding-right: 4.5px;
+}
+.HomeBlogFeed .HomeBlogInfo li:last-child::after {
+    content: " ";
+    padding-right: 0;
+}
+.NewsPreviewText {
+    line-height: 0;
+    padding-bottom: 36px;
+    padding-top: 36px;
+    text-align: center;
+}
+.nailthumb-align {
+    display: inline-block;
+}
+.nailthumb-title {
+    background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
+    bottom: 0;
+    color: #fff;
+    display: block;
+    float: left;
+    font-size: 10.5px;
+    height: 18px;
+    left: 0;
+    line-height: 18px;
+    margin-top: 2px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+.nailthumb-title .nailthumb-title-scroller {
+    padding-left: 2px;
+}
+.nailthumb-align {
+    display: inline-block;
+}
+.nailthumb-title {
+    background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
+    bottom: 0;
+    color: #fff;
+    display: block;
+    float: left;
+    font-size: 10.5px;
+    height: 18px;
+    left: 0;
+    line-height: 18px;
+    margin-top: 2px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+.nailthumb-title .nailthumb-title-scroller {
+    padding-left: 2px;
+}
+.nailthumb-container {
+    position: relative;
+}
+.LargeBlog {
+    height: 126px !important;
+    line-height: 126px !important;
+    width: 216px !important;
+}
+@media all and (max-width: 29.99em) {
+.LargeBlog {
+    width: 100%;
+    }
+}

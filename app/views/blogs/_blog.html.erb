@@ -7,7 +7,7 @@
 	</div>
 	<div class="card-block">
 		<%= truncate(strip_tags(blog.extended_html_content), length: 300, :omission => "...") %>
-		<%= link_to 'read more', blog %> 		
+		[<%= link_to 'read more <i class="fa fa-angle-double-right" aria-hidden="true"></i>'.html_safe, blog %>] 		
 	</div>
 	<div class="text-xs-right">
 		Author: <%= link_to blog.author.name, user_path(blog.author_id) %>

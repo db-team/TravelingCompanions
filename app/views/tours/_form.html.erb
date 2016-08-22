@@ -15,7 +15,7 @@
 <br/>
 <br/>
 <br/>
-
+    <%= hidden_field_tag :creator_id, current_user.id %>
     <div class="form-group">
       <%= f.label "Tieu de" %><br>
       <%= f.text_field :title, placeholder: "Nhap vao tieu de chuyen di", class: "form-control" %>
