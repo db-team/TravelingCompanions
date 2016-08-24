@@ -1,19 +1,24 @@
-<div class="card blog-index">
-	<div class="card-header">
-		<%= blog.title %>
-		<div class="pull-xs-right">
-			<%= time_ago_in_words(blog.created_at) %>
-		</div>
-	</div>
-	<div class="card-block">
-		<%= truncate(strip_tags(blog.extended_html_content), length: 300, :omission => "...") %>
-		[<%= link_to 'read more <i class="fa fa-angle-double-right" aria-hidden="true"></i>'.html_safe, blog %>] 		
-	</div>
-	<div class="text-xs-right">
-		Author: <%= link_to blog.author.name, user_path(blog.author_id) %>
-
-	</div>
-	<p>
-		Tags: <%= raw blog.tag_list.map { |t| link_to t, tag_path(t)}.join(', ') %>
-	</p>
+<div class="card">
+	<div class="media HomeBlogFeed">
+	  <div class="LargeBlog HomeBlogImg media-img nailthumb-container" style="overflow: hidden; padding: 0px; width: 216px; height: 126px;">
+	    <%= image_tag blog.photo_url, :style => 'position: relative; width: 216px; height: 144px; top: 0px; left: 0px;' %>
+	  </div>
+	  <div class="media__body HomeBlogContent">
+	    <h4>
+	      <%= blog.title %>
+	    </h4>
+	    <p class="HomeBlogPost">
+	      <%= truncate(strip_tags(blog.extended_html_content), length: 400, :omission => "...") %>
+	      [<%= link_to 'read more <i class="fa fa-angle-double-right" aria-hidden="true"></i>'.html_safe, blog %>] 
+	    </p>
+	    <ul class="HomeBlogInfo text-muted">
+	      <li>
+	        <%= blog.created_at.strftime("%B %d, %Y") %>
+	      </li>
+	      <li>
+	        <%= blog.author.name %>
+	      </li>
+	    </ul>
+	  </div>
+	</div>	
 </div>

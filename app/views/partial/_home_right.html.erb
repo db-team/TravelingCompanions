@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="card-block">
+    <h5>Make new friend</h5>
+    <ul class="aoj">
+      <% User.all.limit(2).each do |user| %>
+        <li class="qn">
+          <%= link_to image_tag(user.avatar_url, :class => 'qh'), user_path(user), class: 'qj' %>
+          <div class="qg">
+            <h5>
+              <%= user.name %> 
+            </h5>   
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="card-footer">
+    <p class="card-text">
+      Let make some new friends and you will be more happy.
+    </p>
+  </div>
+</div>

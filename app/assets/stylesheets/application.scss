@@ -6,9 +6,9 @@
 @import "welcome";
 @import "tours";
 @import "browse_members";
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700);
 
 a:hover  {
-    color: #44babb;
     text-decoration: none;
 }
 a:focus {
@@ -16,13 +16,28 @@ a:focus {
     text-decoration: none;
 }
 html {
-    font-family: Arial,sans-serif;
-    background-color: #F5F8FA;
+    font-family: Lato,Arial,sans-serif;
 }
 body {
+    font-family: 'Lato';
     color: #292f33;
     font-size: 14px;
-    line-height: 18px;
+    line-height: 1.6;
+    background-color: #F5F8FA;
+}
+
+h1, h2, h3, h4, h5, h6, .cy, .cz, .da, .db, .dc, .dd {
+    color: inherit;
+    font-family: inherit;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+h5 {
+  font-size: 14px;
+  color: inherit;
+  font-weight: 600;
+  line-height: 1.2;
 }
 
 ol, ul {
@@ -33,8 +48,9 @@ ol, ul {
 nav.index {
   background: #fff none repeat scroll 0 0;
   border-bottom: 1px solid #eee;
-  height: 46px;
+  height: 52px;
   color: #292f33;
+  
   .btn {
     -moz-appearance: none;
     -moz-user-select: none;
@@ -48,8 +64,118 @@ nav.index {
     vertical-align: middle;
     white-space: nowrap;
   }
+  .non_arrow
+  {
+    img{
+        margin-top: -13px;
+    }    
+    .dropdown-toggle:after {
+        border: none !important;
+        content: "" !important;
+    }
+  }
 }
-
+ul.dropdown-menu {
+  margin-top: 10px !important;
+  border-radius: 5px !important;
+  li {
+    margin: 5px 0px;
+  }
+}
+.dropdown .dropdown-menu a {
+    margin-top: 5px;
+}
 .content {
     margin-top: 50px;
+    padding-top: 30px !important;
+}
+.card.form{
+    padding: 20px;
+}
+.breaktop {
+  margin-top: 10px;
+}
+.breakbottom {
+  margin-bottom: 20px;
+}
+.p_bottom_tw {
+  padding-bottom: 20px;
+}
+.card-header {
+  background-color: #fff;
+}
+.all {
+    margin-right: 20px !important;
+}
+.dp {
+    color: #9da9b0;
+}
+.qj, .qg {
+  display: table-cell;
+  vertical-align: top;
+  padding-right: 10px;
+}
+.qg {
+  width: 10000px;
+}
+.qh {
+  width: 60px;
+  border-radius: 100%;
+  display: block;
+}
+.thumb {
+  width: 40px;
+  border-radius: 100%;
+  display: block;
+}
+.qn {
+  margin-bottom: 5px;
+}
+.fr {
+  float: right !important;
+}
+.lg_cover {
+  margin-top: -50px;
+  background-size: cover;
+  border: 0 none;
+  display: table;
+  height: 500px;
+  margin-bottom: 0;
+  padding-bottom: 48px;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+.ant {
+    margin: 0 auto;
+    max-width: 300px;
+}
+.ma {
+  width: 110px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  display: inline-block;
+  margin-right: 0;
+  width: 80px;
+}
+.ans .by, .ans .gb {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    width: 1000000px;
+}
+.anv {
+    color: #fff;
+    margin-top: 20px;
+}
+.anw {
+    bottom: 0;
+    left: 0;
+    line-height: 0;
+    position: absolute;
+    right: 0;
+}
+a.white_b{
+  color: #fff;
+  font-size: 20px;
+  
 }

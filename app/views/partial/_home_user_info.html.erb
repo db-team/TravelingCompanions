@@ -1,0 +1,75 @@
+<div class="card">
+  <div class="cover" style="background-image: url(https://image.freepik.com/free-vector/road-trip-background_23-2147511443.jpg); "></div>
+  <div class="qw dj qy">
+    <%= image_tag(current_user.avatar_url, class: 'avatar') %>
+    <h5 class="name">
+      <%= link_to "#{current_user.name}", user_path(current_user) %>
+    </h5>
+    <p class="alu">
+      <% if current_user.about? %>
+        <%= current_user.about %>
+      <% end %>
+    </p>
+    <ul class="aoi">
+      <li class="aoj">
+        <a href="<%= following_user_path(current_user) %>">
+          following
+          <h5><%= current_user.following.count %></h5>
+        </a>
+      </li>
+      <li class="aoj">
+        <a href="<%= followers_user_path(current_user) %>">
+          followers
+          <h5><%= current_user.followers.count %></h5>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header">
+    <h5>
+      About
+      <small class="text-muted"> .
+        <%= link_to "Edit", edit_user_path(current_user) %>
+      </small>
+    </h5>
+  </div>
+  <div class="card-block">
+    <ul class="aoj">
+      <% if current_user.job? %>
+        <li>
+          <span class="all dp"><i class="fa fa-briefcase" aria-hidden="true"></i> </span>
+          <%= current_user.job %> 
+        </li>
+      <% end %>
+      <li>
+        <span class="all dp"><i class="fa fa-calendar" aria-hidden="true"></i> </span>
+        <%= current_user.created_at.strftime("%B %d, %Y") %> 
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header">
+    <h5>
+      Blog
+    </h5>
+  </div>
+  <div class="card-block">
+    <ul class="aoj">
+      <% unless @my_blogs.present? %>
+        <li>
+          <small class="text-muted">No blog.</small>
+        </li>
+      <% else %>
+        <% @my_blogs.each do |mb| %>
+          <li>
+            <%= link_to mb.title, mb %>
+            <small class="text-muted"><%= pluralize(mb.blog_comments.count, 'comment') %></small>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+</div>

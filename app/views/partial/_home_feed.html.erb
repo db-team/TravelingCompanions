@@ -1,0 +1,60 @@
+<div class="card">
+  <ul class="aoj">
+    <% unless @tours.present? %>
+      <li>
+        <small class="text-muted">Not activity.</small>
+      </li>
+    <% else %>
+      <% @tours.each do |tour| %>
+        <li class="card-block">
+          <%= link_to image_tag(tour.creator.avatar_url, :class => 'qh'), user_path(tour.creator), class: 'qj' %>
+          <div class="qg">
+            <div class="qn">
+              <small class="text-muted fr"><%= time_ago_in_words(tour.created_at) %></small>
+              <h5>
+                  <%= tour.creator.name %> 
+                  <small class="text-muted">create new trip</small>
+              </h5>
+              
+            </div>
+            <div class="RoundedBox LightBox push-half--bottom">
+              <div class="RoundedBoxContent">
+                <ul class="aoj qg">
+                  <li>
+                    <strong class="qn"><%= tour.title %></strong>  
+                  </li>
+                  <li>
+                    <span class="all dp"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                    <%= toVNDate tour.fromtime %> - <%= toVNDate tour.totime %>
+                  </li>
+                  <li>
+                    <span class="all dp"><i class="fa fa-users" aria-hidden="true"></i></span>
+                    <%= pluralize(tour.maxmember, 'member') %>
+                  </li>
+                  <li>
+                    <span class="all dp"><i class="fa fa-compass" aria-hidden="true"></i></span>
+                    <%= tour.travel_route %>
+                  </li>
+                  <li>
+                    <%= link_to 'details', tour_path(tour), class: 'text-muted fr' %> 
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <ul class="aoj">
+              <% tour.tourcomments.each do |cm| %>
+              <li class="breaktop">
+                <%= link_to image_tag(tour.creator.avatar_url, :class => 'thumb'), user_path(tour.creator), class: 'qj' %>
+                <div class="qg">
+                  <strong><%= cm.commenter.name %>:</strong>
+                  <%= cm.content %>
+                </div>
+              </li>
+              <% end %>
+            </ul>
+          </div>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>  
+</div>

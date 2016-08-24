@@ -1,6 +1,6 @@
 class ToursController < ApplicationController
 	def index
-		@tours = Tour.all.order('created_at desc').limit(10)
+		@tours = Tour.valid.order('fromtime asc')
 	end
 
 	def new

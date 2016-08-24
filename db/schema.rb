@@ -10,17 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160820022015) do
+ActiveRecord::Schema.define(version: 20160824060123) do
+
+  create_table "blog_comments", force: :cascade do |t|
+    t.integer  "commenter_id"
+    t.text     "body"
+    t.integer  "blog_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["blog_id"], name: "index_blog_comments_on_blog_id"
+    t.index ["commenter_id"], name: "index_blog_comments_on_commenter_id"
+  end
 
   create_table "blogs", force: :cascade do |t|
     t.string   "title"
     t.text     "extended_html_content"
     t.integer  "author_id"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
-    t.boolean  "published",             default: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "photo_url"
-    t.datetime "published_at"
+    t.integer  "view_count",            default: 0
   end
 
   create_table "bootsy_image_galleries", force: :cascade do |t|
@@ -191,6 +200,8 @@ ActiveRecord::Schema.define(version: 20160820022015) do
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
     t.string   "avatar"
+    t.string   "about"
+    t.string   "job"
     t.index ["email"], name: "index_users_on_email"
     t.index ["username"], name: "index_users_on_username"
   end

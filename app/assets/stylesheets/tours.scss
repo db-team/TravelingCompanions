@@ -1,11 +1,11 @@
-.card>img.card-img-top {
-height: 200px;
-width: 100%
-}
+// .card>img.card-img-top {
+// height: 200px;
+// width: 100%
+// }
 
-.card-block {
-	padding: 0px
-}
+// .card-block {
+// 	padding: 0px
+// }
 .tour-title .tour-time {
 	max-height: 17px;
 }
@@ -21,7 +21,7 @@ width: 100%
 
 }
 
-.card-title {
+.card-title.tour{
 	padding-left: 10px
 }
 
@@ -29,7 +29,7 @@ width: 100%
   padding-left: 28px
 }
 
-input {
+input .max{
 	width: 100%
 }
 .container-fluid{

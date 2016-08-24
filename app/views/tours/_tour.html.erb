@@ -1,28 +1,24 @@
-</br>
-</br>
-</br>
 <div class="container-fluid" data-spy="scroll" data-target="#myScrollspy" data-offset="10" >
   <div class="row">
     <nav class="col-sm-2 sidebar" id="myScrollspy">
       <ul class="nav nav-pills nav-stacked" >
-        <li class="nav-item "> <a class="nav-link active" href="#tour_title">Tieu de</a></li>
-        <li class="nav-item ">  <a class="nav-link" href="#inner_description">Mo ta</a></li>
-        <li class="nav-item ">  <a class="nav-link" href="#detail">Lo trinh</a></li>
-        <li class="nav-item ">  <a class="nav-link" href="#tourcomments">Binh luan</a></li>
+        <li class="nav-item "> <a class="nav-link active" href="#tour_title">Title</a></li>
+        <li class="nav-item ">  <a class="nav-link" href="#inner_description">Describe</a></li>
+        <li class="nav-item ">  <a class="nav-link" href="#detail">Journey</a></li>
+        <li class="nav-item ">  <a class="nav-link" href="#tourcomments">Comment</a></li>
       </ul>
     </nav>
     <div class="col-sm-10 offset-sm-3 col-md-10 offset-md-2 main">
       <div id="tour_description2">
         <div id="tour_title">
           <div class="row">
-            <h4 class="card-title"><%= tour.title %></h4> <% if is_my_tour?(tour) %>
+            <h4 class="card-title tour"><%= tour.title %></h4> <% if is_my_tour?(tour) %>
             <%= link_to edit_tour_path(id: tour.id), method: :get do %> 
             <i class="fa fa-pencil" aria-hidden="true"></i>
             <% end %>
             <% end %>
           </div>
         </div>
-        <img class="card-img-top" src="<%= tour.pick_image %>" alt="Card image cap" />
         <div class="card-block" id="inner_description" >
           <div class="main"  > 
             <p class="card-text">
@@ -34,10 +30,10 @@
             </p>
           </div>
           <ul class="list-group list-group-flush" id="detail">
-            <li class="list-group-item">Thoi gian: <span class="tag tag-info"><%= toVNTimezone(tour.fromtime) %></span> - <span class="tag tag-info"><%= toVNTimezone(tour.totime) %> </span> </li>
-            <li class="list-group-item">Lo trinh: <%= tour.travel_route %> </li>
-            <li class="list-group-item">So thanh vien toi da: <%= tour.maxmember %></li>
-            <li class="list-group-item">Chi phi du kien: <span class="tag tag-info"> <%= toVND(tour.estimatebudget) %> </span></li>
+            <li class="list-group-item">Time: <span class="tag tag-info"><%= toVNTimezone(tour.fromtime) %></span> - <span class="tag tag-info"><%= toVNTimezone(tour.totime) %> </span> </li>
+            <li class="list-group-item">Route: <%= tour.travel_route %> </li>
+            <li class="list-group-item">Member limit: <%= tour.maxmember %></li>
+            <li class="list-group-item">Expected cost: <span class="tag tag-info"> <%= toVND(tour.estimatebudget) %> </span></li>
             <li class="list-group-item" id="pending_members"> <%= render 'pending_members', tour: tour %></li>
           </ul>
           <div class="card-footer text-muted">

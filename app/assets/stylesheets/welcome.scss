@@ -6,6 +6,7 @@
     overflow: hidden;
     position: relative;
     width: 100%;
+    margin-top: -25px;
 }
 .Hero.HeroTall {
     height: 500px;
@@ -285,8 +286,72 @@
     line-height: 126px !important;
     width: 216px !important;
 }
-@media all and (max-width: 29.99em) {
-.LargeBlog {
-    width: 100%;
+
+
+.card {
+    background-color: #ffffff;
+    border: 1px solid transparent;
+    border-color: #d3e0e9;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    margin-bottom: 22px;
+    .cover{
+        background-size: cover;
+        height: 150px;
+        background-color: #f5f5f5;
+        border-color: #d3e0e9;
+        color: #1e3948;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        padding: 10px 15px;
     }
+    .avatar {
+        border: 3px solid #fff;
+        border-radius: 100%;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        margin-bottom: 5px;
+        margin-top: -70px;
+        max-width: 100px;
+    }
+    .name {
+      margin-bottom: 5px;
+    }
+    .username {
+      display: block;
+      font-size: 16px;
+      color: #888;
+    }
+
+    .content {
+      margin-top: 10px;
+      line-height: 2rem;
+    }
+  
+}
+.qw {
+    padding: 15px;
+}
+.dj {
+    text-align: center;
+}
+.aoi {
+    list-style: outside none none;
+    padding: 0;
+}
+.aoj:last-child {
+    border-right: 0 none;
+}
+.aoj {
+    border-right: 1px solid #d4dbe0;
+    display: inline-block;
+    padding: 0 10px;
+}
+.alu {
+    margin-bottom: 30px !important;
+}
+.qy  a, .qy  small, .qy  .de, .qy  small  a, .qy  .de  a {
+    color: inherit;
+}
+.br {
+    border-right: 1px solid #eee;
 }

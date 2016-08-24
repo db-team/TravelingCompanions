@@ -1,8 +1,57 @@
 <div class="container">
-<div class="row", id="new_tour" >
-<%= link_to "Tao chuyen di moi", new_tour_path, class: "btn btn-primary" %></div>
-<br/>
-<% @tours.each do |tour| %>
-<%= render 'tour_in_card', tour: tour %>
-<% end %>
+  <% @tours.each do |tour| %>
+    <div class="RoundedBox LightBox push-half--bottom">
+      <div class="RoundedBoxContent">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="media">
+              <div class="media-img">
+                <%= link_to user_path(tour.creator) do %>
+                  <%= image_tag tour.creator.avatar_url, :class => 'img-thumbnail', :style => "overflow: hidden; padding: 0px; width: 72px; height: 72px;" %>
+                <% end %>
+              </div>
+              <h5 class="push-half--botom"><%= tour.creator.name %></h5>
+              <b>Wants to travel to:</b>
+              <p style="margin-bottom: 0">
+                <%= tour.toplace %><br>
+                <%= link_to 'View trip details', tour_path(tour) %> 
+              </p>
+            </div>  
+          </div>
+          <div class="col-sm-3">
+            <p> 
+              <i class="fa fa-calendar" aria-hidden="true"></i> <%= toVNDate tour.fromtime %> - <%= toVNDate tour.totime %>
+              <br>
+              <i class="fa fa-users" aria-hidden="true"></i> <%= tour.maxmember %> members
+              <br>
+              <i class="fa fa-compass" aria-hidden="true"></i> <%= tour.travel_route %>
+              <br>
+              <% if tour.transport == "Xe may" %>
+                <i class="fa fa-motorcycle" aria-hidden="true"></i> Motorcycle
+              <% elsif tour.transport == "Tau lua" %>
+                <i class="fa fa-subway" aria-hidden="true"></i> Train
+              <% elsif tour.transport == "May bay" %>
+                <i class="fa fa-plane" aria-hidden="true"></i> Plane
+              <% elsif tour.transport == "Xe khach" %>
+                <i class="fa fa-bus" aria-hidden="true"></i> Bus
+              <% else %>
+                <i class="fa fa-plane" aria-hidden="true"></i> <%= tour.transport %>
+              <% end %>
+            </p>
+            
+          </div>
+          <div class="col-sm-3 text-xs-right">
+            <p> Fee: <span class="tag tag-info"><%= toVND tour.estimatebudget %></span></p>
+        		<% unless is_my_tour?(tour) %>
+          		<% unless has_join_request?(tour) %>
+          		  <%= render 'join_or_cancel', tour: tour %>
+          		<% end %>
+        		<% else %>
+        		  <%= link_to "Approve Member", tour_browse_members_path(tour.id), class: "btn btn-primary" %>
+        		<% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>

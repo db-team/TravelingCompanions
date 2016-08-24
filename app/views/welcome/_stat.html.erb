@@ -17,8 +17,8 @@
       <div class="RoundedBox LightBox">
         <div class="RoundedBoxContent">
           <ul class="SmallForm">
-            <%= form_for(@user) do |f| %>
-              <li><%= f.text_field :name, placeholder: "Name", class: 'form-control' %></li>
+            <%= form_for(User.new) do |f| %>
+              <li><%= f.text_field :name, placeholder: "Full Name", class: 'form-control' %></li>
               
               <li><%= f.text_field :username, placeholder: "Username", class: 'form-control' %></li>
             

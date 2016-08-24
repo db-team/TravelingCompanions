@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :blogs do
     member do 
       post :publish, :unpublish
+      resources :blog_comments
     end 
   end
 

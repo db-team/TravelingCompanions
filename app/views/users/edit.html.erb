@@ -1,18 +1,39 @@
 <% provide(:title, "Edit user") %>
-<h1>Update your profile</h1>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@user) do |f| %>
-	  <%= render 'shared/error_messages', object: @user %>
-
-	  <%= f.label :avatar, "Upload Your Avatar:" %>
-		<%= f.filepicker_field :avatar, class: 'form-control' %> <!-- User#filepicker_url is a regular string column -->
-
-	  <%= f.label :name %>
-	  <%= f.text_field :name, class: 'form-control' %>
-
-	  <%= f.submit 'Save changes', class: "btn btn-primary" %>
-	<% end %>
-  </div>
+<div class="container">
+	<div class="row">
+	  <div class="col-md-6 offset-md-3">
+	  	<div class="card">
+	  		<div class="card-header">
+					<h3 class="card-title">Update your profile</h3>
+	  		</div>
+	  		<div class="card-block">
+	  			<%= form_for(@user) do |f| %>
+					  <%= render 'shared/error_messages', object: @user %>
+						<div class="form-group">
+							<%= f.label :avatar, "Upload Your Avatar:" %>
+							<%= f.filepicker_field :avatar, class: 'form-control' %> <!-- User#filepicker_url is a regular string column -->	
+						</div>
+					  
+						<div class="form-group">
+							<%= f.label :name %>
+					  	<%= f.text_field :name, class: 'form-control' %>
+						</div>
+						
+					  <div class="form-group">
+							<%= f.label :about %>
+							<%= f.text_field :about, class: 'form-control' %>	
+						</div>
+						
+						<div class="form-group">
+							<%= f.label :job %>
+							<%= f.text_field :job, class: 'form-control' %>	
+						</div>
+						
+					  <%= f.submit 'Save changes', class: "btn btn-primary btn-lg btn-block" %>
+					<% end %>
+	  		</div>
+	  	</div>
+	  </div>
+	</div>	
 </div>

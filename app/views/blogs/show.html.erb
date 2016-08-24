@@ -1,19 +1,62 @@
-<div class="container">
-	<%= image_tag @blog.photo_url, class: 'slide-item', style: 'max-width: 800px; max-height: 300px;' %>
-	<h1>
-		<%= @blog.title %>
-	</h1>
-	<% if @blog.author == current_user || current_user.admin? %>
-		<% if @blog.published? %>
-			<%= link_to 'Unpublish', { :controller => "blogs", :action => "unpublish"}, {:method => :post } %>
-		<% else %>
-			<%= link_to 'Publish', { :controller => "blogs", :action => "publish"}, {:method => :post } %>
-		<% end %>
-	<% end %>
-	<span>
-		by <%= @blog.author.name %>
-	</span>
-	<p>
-		<%= @blog.extended_html_content.html_safe %>
-	</p>
+<div class="container p_bottom_tw">
+	<div class="card">
+		<div class="card-block">
+			<div class="row">
+			<div class="col-sm-8 qw br">
+				<label class="bg-warning"><%= time_ago_in_words(@blog.created_at) %></label>
+				
+				<h4 class="card-title"><%= @blog.title %></h4>
+				<ul class="aoi">
+					<li>
+						Posted: <label class="text-warning"><%= @blog.created_at.strftime("%A, %B %d, %Y") %></label>
+					</li>
+					<li>
+						Views: <label class="text-warning"><%= @blog.view_count %></label>
+					</li>
+					<li>
+						Written by:<label class="text-warning"><%= @blog.author.name %></label>
+					</li>
+				</ul>
+				<hr>
+				<p class="card-text"><%= @blog.extended_html_content.html_safe %></p>
+				<hr>
+				<p class="card-text">
+					Tags: <%= raw @blog.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+				</p>
+				<%= render 'blog_comments/form' %>
+				<%= render 'blog_comments/comment' %>
+			</div>
+			<div class="col-sm-4">
+				<h5 class="card-title">Recent Comments</h5>
+				<hr>
+				<ul class="aoi">
+					<% @recents.each do |cm| %>
+							<li>
+								<%= cm.commenter.name %> on <%= link_to cm.blog.title, blog_path(cm.blog) %>
+							</li>
+					<% end %>
+				</ul>
+				<h5 class="card-title">Popular Blog</h5>
+				<hr>
+				<ul class="aoi">
+					<% @popular.each do |pop| %>
+						<li>
+							<div class="RoundedBoxContent">
+						    <div class="media">
+						      <div class="media-img"><%= image_tag pop.photo_url, :class => 'img-thumbnail', :style => "overflow: hidden; padding: 0px; width: 72px; height: 72px;" %></div>
+						      <ul class="aoi">
+						      	<li>
+						      		<strong><%= link_to pop.title, blog_path(pop) %></strong>
+						      	</li>
+						      	<li><small class="text-muted"><%= pluralize(pop.blog_comments.count, 'comments') %></small></li>
+						      </ul>
+						    </div>
+						</li>
+					<% end %>
+				</ul>
+			</div>
+		</div>
+		</div>
+	</div>
 </div>
+

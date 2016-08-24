@@ -13,6 +13,7 @@
 <% end %>
 
 <%= f.hidden_field :commenter_id, :value => current_user ? current_user.id : "" %>
+
 <p>
 	<%= f.text_area :content, :placeholder => 'Nhap binh luan vao day' %>
 </p>

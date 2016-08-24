@@ -5,7 +5,7 @@ class BlogsController < ApplicationController
 		if params[:tag]
 			@blogs = Blog.tagged_with(params[:tag])
 		else	
-			@blogs = Blog.published.lastest_blog
+			@blogs = Blog.all.lastest_blog
 		end
 	end
 
@@ -15,7 +15,7 @@ class BlogsController < ApplicationController
 
 	def create
 		@blog = Blog.new(blog_params)
-		@blog.author_id = params[:author]
+		@blog.view_count = rand(132..543)
 		if @blog.save
 			flash[:info] = "Create new blog success"
 			redirect_to blog_path(@blog)
@@ -26,6 +26,10 @@ class BlogsController < ApplicationController
 
 	def show
 		@blog = Blog.find(params[:id])
+		@recents = BlogComment.order(created_at: :desc).last(5)
+		@popular = Blog.excluding(@blog)
+		@blog.view_count += 1
+		@blog.save
 	end
 
 	def edit
@@ -50,13 +54,13 @@ class BlogsController < ApplicationController
 	
 	def unpublish
 		@blog = Blog.find(params[:id])
-		@blog.update_attributes(:published => false, :published_at => nil)
+		@blog.update_attributes(:published => false)
 		redirect_to blog_path(@blog)
 	end
 
 	private
 		def blog_params
-			params.require(:blog).permit(:photo_url, :title, :extended_html_content, :author, :photo_url, :bootsy_image_gallery_id, :tag_list)
+			params.require(:blog).permit(:photo_url, :title, :extended_html_content, :author_id, :photo_url, :bootsy_image_gallery_id, :tag_list)
 		end
 
 		def correct_user

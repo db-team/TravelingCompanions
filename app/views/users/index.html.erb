@@ -1,12 +1,7 @@
 <% provide(:title, 'All users') %>
 <h1>All users</h1>
 
-<%= paginate @users, theme: 'twitter-bootstrap-4',
-                   pagination_class: "pagination-sm" %>
 
 <ul class="users">
   <%= render @users %>
 </ul>
-
-<%= paginate @users, theme: 'twitter-bootstrap-4',
-                   pagination_class: "pagination-sm" %>

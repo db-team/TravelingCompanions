@@ -1,0 +1,29 @@
+<div class="PubWrapers Dark BorderBottom">
+  <div class="container soft-ends">
+    <h3 class="SectionHeading"> GoTravel Blog </h3>
+    <% @blogs.each do |blog| %>
+      <div class="media HomeBlogFeed">
+        <div class="LargeBlog HomeBlogImg media-img nailthumb-container" style="overflow: hidden; padding: 0px; width: 216px; height: 126px;">
+          <%= image_tag blog.photo_url, :style => 'position: relative; width: 216px; height: 144px; top: 0px; left: 0px;' %>
+        </div>
+        <div class="media__body HomeBlogContent">
+          <h4 class="HomeBlogHeading">
+            <%= blog.title %>
+          </h4>
+          <p class="HomeBlogPost">
+            <%= truncate(strip_tags(blog.extended_html_content), length: 400, :omission => "...") %>
+		        [<%= link_to 'read more <i class="fa fa-angle-double-right" aria-hidden="true"></i>'.html_safe, blog %>] 
+          </p>
+          <ul class="HomeBlogInfo">
+            <li>
+              <%= blog.created_at.strftime("%B %d, %Y") %>
+            </li>
+            <li>
+              <%= blog.author.name %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

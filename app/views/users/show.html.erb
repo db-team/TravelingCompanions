@@ -1,14 +1,100 @@
 <% provide(:title, @user.username) %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-        <%= image_tag(@user.avatar_url, size: "120x120", :class => 'img-circle') %>
-        <%= @user.name %><br>
-        @<%= @user.username %>
-    </section>
-    <section class="stats">
-	    <%= render 'shared/stats' %>
-	  </section>
-	  <%= render 'follow_form' if logged_in? %>
-  </aside>
+<div class="lg_cover dj" style="background-image: url(http://blog.oxforddictionaries.com/wp-content/uploads/mountain-names.jpg)">
+  <div class="by">
+    <div class="container">
+      <div class="ant" style="padding-top: 150px;">
+        <%= image_tag @user.avatar_url, :style => 'width: 110px',class: 'img-circle' %>
+        <h3 class="anv"><%= @user.name %></h3>
+        <% if @user.about.present? %>
+          <p class="anv" style="font-size: 16px"><%= @user.about %></p>
+        <% end %>
+      </div>
+    </div>  
+  </div>
+  <div class="nav anw">
+    <ul class="aoi">
+      <li class="aoj anv">
+        <a href="<%= following_user_path(current_user) %>" class="white_b">
+          following
+          <h3 class="breaktop"><%= current_user.following.count %></h3>
+        </a>
+      </li>
+      <li class="aoj anv">
+        <a href="<%= followers_user_path(current_user) %>" class="white_b">
+          followers
+          <h3 class="breaktop"><%= current_user.followers.count %></h3>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="container breaktop">
+  <div class="card">
+    <div class="card-header">
+      <% if current_user == @user %>
+        <%= link_to "Edit Profile", edit_user_path(@user), class: 'btn btn-secondary fr' %>
+      <% end %>
+      <%= render 'follow_form' if logged_in? %> 
+    </div>
+    <div class="card-block">
+      <ul class="aoj">
+        <% unless @tours.present? %>
+          <li>
+            <small class="text-muted">Not activity.</small>
+          </li>
+        <% else %>
+          <% @tours.each do |tour| %>
+            <li class="card-block">
+              <%= link_to image_tag(tour.creator.avatar_url, :class => 'qh'), user_path(tour.creator), class: 'qj' %>
+              <div class="qg">
+                <div class="qn">
+                  <small class="text-muted fr"><%= time_ago_in_words(tour.created_at) %></small>
+                  <h5>
+                      <%= tour.creator.name %> 
+                      <small class="text-muted">create new trip</small>
+                  </h5>
+                  
+                </div>
+                <div class="RoundedBox LightBox push-half--bottom">
+                  <div class="RoundedBoxContent">
+                    <ul class="aoj qg">
+                      <li>
+                        <strong class="qn"><%= tour.title %></strong>  
+                      </li>
+                      <li>
+                        <span class="all dp"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                        <%= toVNDate tour.fromtime %> - <%= toVNDate tour.totime %>
+                      </li>
+                      <li>
+                        <span class="all dp"><i class="fa fa-users" aria-hidden="true"></i></span>
+                        <%= pluralize(tour.maxmember, 'member') %>
+                      </li>
+                      <li>
+                        <span class="all dp"><i class="fa fa-compass" aria-hidden="true"></i></span>
+                        <%= tour.travel_route %>
+                      </li>
+                      <li>
+                        <%= link_to 'details', tour_path(tour), class: 'text-muted fr' %> 
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <ul class="aoj">
+                  <% tour.tourcomments.each do |cm| %>
+                  <li class="breaktop">
+                    <%= link_to image_tag(tour.creator.avatar_url, :class => 'thumb'), user_path(tour.creator), class: 'qj' %>
+                    <div class="qg">
+                      <strong><%= cm.commenter.name %>:</strong>
+                      <%= cm.content %>
+                    </div>
+                  </li>
+                  <% end %>
+                </ul>
+              </div>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>  
+    </div>
+  </div>
 </div>

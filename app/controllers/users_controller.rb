@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @tours = Tour.where('creator_id = ?', @user.id).order('created_at desc')
     redirect_to root_url and return unless @user.activated
   end
 
@@ -64,7 +65,7 @@ class UsersController < ApplicationController
   
   private
   def user_params
-    params.require(:user).permit(:name, :username, :email, :password, :password_confirmation, :avatar)
+    params.require(:user).permit(:name, :username, :email, :password, :password_confirmation, :avatar, :about, :job, :address)
   end
   # Confirms an admin user.
   def admin_user

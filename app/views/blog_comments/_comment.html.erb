@@ -1,0 +1,15 @@
+<% @blog.blog_comments.order('created_at desc').each do |comment| %>
+  <div class="RoundedBox LightBox breaktop">
+    <div class="RoundedBoxContent">
+      <div class="media">
+        <div class="media-img">
+          <%= image_tag comment.commenter.avatar_url, :class => 'img-thumbnail', :style => "overflow: hidden; padding: 0px; width: 72px; height: 72px;" %>
+          <h5 class="push-half--botom"><%= comment.commenter.name %></h5>  
+        </div>
+        <p style="margin-bottom: 0">
+          <%= comment.body %>
+        </p>
+      </div>
+    </div>
+  </div>
+<% end %>
