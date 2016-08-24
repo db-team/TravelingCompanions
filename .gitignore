@@ -16,7 +16,6 @@
 
 # Ignore Byebug command history file.
 .byebug_history
-Gemfile.lock
 config/database.yml
 .env
 db/development.sqlite3

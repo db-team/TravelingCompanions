@@ -1,5 +1,5 @@
-<% unless current_user || tour.has_pending_request(current_user) %>
-        <%= link_to "Placeholder", join_request_path(:id => tour.id), method: :post , class: 'btn btn-primary', :remote => true  %>
-<% else %>
+<% if current_user || tour.has_pending_request(current_user) %>
         <%= link_to "Cancel", cancel_request_path(:id => tour.id), method: :post , class: 'btn btn-danger', :remote => true  %>
+<% else %>
+        <%= link_to "Join", join_request_path(:id => tour.id), method: :post , class: 'btn btn-primary', :remote => true  %>
 <% end %>
