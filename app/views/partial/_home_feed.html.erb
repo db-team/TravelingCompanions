@@ -46,7 +46,7 @@
               <li class="breaktop">
                 <%= link_to image_tag(tour.creator.avatar_url, :class => 'thumb'), user_path(tour.creator), class: 'qj' %>
                 <div class="qg">
-                  <strong><%= cm.commenter.name %>:</strong>
+                  <strong><%= cm.commenter_name %>:</strong>
                   <%= cm.content %>
                 </div>
               </li>

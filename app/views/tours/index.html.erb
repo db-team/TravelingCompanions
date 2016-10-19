@@ -43,9 +43,7 @@
           <div class="col-sm-3 text-xs-right">
             <p> Fee: <span class="tag tag-info"><%= toVND tour.estimatebudget %></span></p>
         		<% unless is_my_tour?(tour) %>
-          		<% unless has_join_request?(tour) %>
           		  <%= render 'join_or_cancel', tour: tour %>
-          		<% end %>
         		<% else %>
         		  <%= link_to "Approve Member", tour_browse_members_path(tour.id), class: "btn btn-primary" %>
         		<% end %>

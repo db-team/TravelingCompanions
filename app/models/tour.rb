@@ -91,11 +91,11 @@ class Tour < ApplicationRecord
 	end
 
 	def has_pending_request(user)		
-		return pending_members.find_by(:id => user.id) if user
+		return pending_members.find_by(:member_id => user.id) if user
 	end
 
 	def has_request_from?(user)
-		return true if user && members.find_by(:id => user.id) 
+		return true if user && members.find_by(:member_id => user.id) 
 	end
 
 	# def pending_members

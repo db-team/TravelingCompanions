@@ -9,6 +9,7 @@ class ToursController < ApplicationController
 
 	def show
 		@tour = Tour.find(params[:id])
+		@tourcomments = @tour.tourcomments
 	end
 
 	def edit 
@@ -88,14 +89,16 @@ class ToursController < ApplicationController
 	def join_request		
 		curr_user = current_user
 		@tour = Tour.find(params[:id])
-
 		if not @tour.has_pending_request(curr_user)
 			@tour.join_request(curr_user)
 		end
 
 		respond_to do |format|
-			# format.html 
-			format.js { render :file => '/tours/_change_request.js.erb' }
+			# format.html { redirect_to :back}
+			# format.js { render :file => '/tours/_change_request.js.erb' }
+			format.js {
+		       render :file => '/tours/_change_request.js.erb'
+		    }
 		end
 	end
 

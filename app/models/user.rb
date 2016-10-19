@@ -92,8 +92,13 @@ class User < ApplicationRecord
     if avatar.present?
       avatar
     else
-      "http://brandonmathis.com/projects/fancy-avatars/demo/images/avatar_male_dark_on_clear_200x200.png"
+      # "http://brandonmathis.com/projects/fancy-avatars/demo/images/avatar_male_dark_on_clear_200x200.png"
+      User.default_avatar
     end
+  end
+
+  def self.default_avatar
+    "http://brandonmathis.com/projects/fancy-avatars/demo/images/avatar_male_dark_on_clear_200x200.png"
   end
 
   # Follows a user.
