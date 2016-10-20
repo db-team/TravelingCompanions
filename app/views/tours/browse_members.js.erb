@@ -1,2 +1,2 @@
 $('.members-info').html('<%= "#{@tour.total_approved_members.to_s} Approved / #{@tour.total_pending_members.to_s} Pending" %>');
-$('#member_status<%= user_id%>').html('<%= j render partial: "member_list", locals: {member: @member, tour: @tour} %>')
+$('#member_status<%= @user_id%>').html('<%= j render partial: "member_list", locals: {member: @member, tour: @tour} %>')

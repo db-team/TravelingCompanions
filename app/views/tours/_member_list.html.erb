@@ -1,20 +1,20 @@
 <% case member.status %>
 <% when 'pending'  %>
 <% status,color,tag_suffix,tag_hover,status_hover = 'pending', 'gray', 'tag-default', 'tag-success', 'approved' %>
-<% action = link_to "Approve", tour_pick_member_path(:tour_id => tour.id, :user_id => member.member_id), :method => :post, :remote => true, class: "btn btn-primary pick-member" %>
+<% action = link_to "Approve", tour_pick_member_path(:tour_id => tour.id, :user_id => member.member_id), :method => :post, class: "btn btn-primary pick-member" %>
 
 
 <% when 'approved' %>
 <% status,color,tag_suffix,tag_hover,status_hover ='approved', 'green', 'tag-success', 'tag-danger', 'rejected'  %>
-<% action = link_to "Cancel", tour_reject_member_path(:tour_id => tour.id, :user_id => member.member_id), :method => :post, :remote => true, class: "btn btn-danger pick-member" %>
+<% action = link_to "Cancel", tour_reject_member_path(:tour_id => tour.id, :user_id => member.member_id), :method => :post, class: "btn btn-danger pick-member" %>
 
 
 <% when 'rejected' %>
 <% status,color,tag_suffix,tag_hover,status_hover ='rejected', 'red', 'tag-danger', 'tag-success', 'approved'  %>
-<% action = link_to "Approve", tour_pick_member_path(:tour_id => tour.id, :user_id => member.member_id), :method => :post, :remote => true, class: "btn btn-primary pick-member" %>
+<% action = link_to "Approve", tour_pick_member_path(:tour_id => tour.id, :user_id => member.member_id), :method => :post, class: "btn btn-primary pick-member" %>
 <% when 'cancelled' %>
 <% status,color,tag_suffix,tag_hover,status_hover ='cancelled', 'red', 'tag-danger', 'tag-success', 'approved'  %>
-<% action = link_to "Approve", tour_pick_member_path(:tour_id => tour.id, :user_id => member.member_id), :method => :post, :remote => true, class: "btn btn-primary pick-member" %>
+<% action = link_to "Approve", tour_pick_member_path(:tour_id => tour.id, :user_id => member.member_id), :method => :post, class: "btn btn-primary pick-member" %>
 <% end %>
 <div class="row" id="member_status<%= member.member_id%>">
 

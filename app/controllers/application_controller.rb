@@ -3,7 +3,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :is_my_tour?
   before_action :set_locale
-  after_filter :flash_headers, if: Proc.new {|c| c.request.xhr? }
+  # after_filter :flash_headers, if: Proc.new {|c| c.request.xhr? }
+  after_action :flash_headers, if: Proc.new {|c| c.request.xhr? }
 
   include SessionsHelper
 
@@ -53,7 +54,8 @@ private
     def flash_headers
      types = %i(error notice warning)
      types.each do |type|
-      response.headers['x-flash'] = flash.now.send(type) unless flash.now[type].blank?
+      # response.headers['x-flash'] = flash.now.send(type) unless flash.now[type].blank?
+      
+      end
     end
-  end
 end

@@ -56,17 +56,19 @@ class ToursController < ApplicationController
 	end
 
 	def pick_member
-		user_id = params[:user_id]
+		@user_id = params[:user_id]
 		@tour = Tour.find(params[:tour_id])		
-		@member = @tour.sorted_members.find(user_id)
+		@member = @tour.sorted_members.find(@user_id).first
 		
 		respond_to do |format|
 			unless @tour.enough_members?
-			    @tour.pick_member(user_id)
-				format.html { redirect_to tour_browse_members_path(@tour.id) }
+			    @tour.pick_member(@user_id)
+				# format.html { redirect_to tour_browse_members_path(@tour.id) }
+				format.html { redirect_to :back}
 				format.js { render 'browse_members.js.erb'}
 			else
-				format.html { redirect_to tour_browse_members_path(@tour.id), error: "Chuyen di da du thanh vien, vui long chinh sua so luong thanh vien toi da truoc khi ket nap them." }
+				# format.html { redirect_to tour_browse_members_path(@tour.id), error: "Chuyen di da du thanh vien, vui long chinh sua so luong thanh vien toi da truoc khi ket nap them." }
+				format.html { redirect_to :back}
 				format.js { flash[:error] = "Chuyen di da du thanh vien, vui long chinh sua so luong thanh vien toi da truoc khi ket nap them." ;
 				 render 'browse_members.js.erb'}
 			end
@@ -74,12 +76,12 @@ class ToursController < ApplicationController
 	end
 
 	def reject_member
-		user_id = params[:user_id]
+		@user_id = params[:user_id]
 		@tour = Tour.find(params[:tour_id])
-		@member = @tour.sorted_members.find(user_id)
+		@member = @tour.sorted_members.find(@user_id).first
 
 		respond_to do |format|
-			if @tour.reject_member(user_id)
+			if @tour.reject_member(@user_id)
 				format.html { redirect_to tour_browse_members_path(@tour.id) }
 				format.js { render 'browse_members.js.erb'}
 			end
